@@ -1,0 +1,242 @@
+# Portmann Alp · Verbindlicher Entwicklungsstand
+
+17. Oktober 2026. Bestehendes Spiel fortgeführt. Frühere veröffentlichte Version bleibt über die Quellhistorie wiederherstellbar. Statuswörter: OFFEN, IN ARBEIT, UMGESETZT, GETESTET. GETESTET bezeichnet ausschliesslich die jeweils genannte Prüfung.
+
+| Priorität | Funktion | Status | Nachweis und offene Abnahme |
+| --- | --- | --- | --- |
+| 1 | Sechs Portmann-Figuren, Referenzbilder in Auswahl, individuelle Gesichts-/Haarformen | UMGESETZT | Originalreferenz IMG_0706 geprüft; sechs Modelldaten/Wechsel/Speicherungen technisch GETESTET. Wiedererkennbarkeit und hochwertiges gerendertes Aussehen IN ARBEIT. |
+| 1 | Knie-/Ellbogengelenke, Geh-/Laufanimation, Hangneigung, Kletterhaltung | UMGESETZT | Endliche Geometrie und stabile Gelenkstruktur GETESTET. Natürlichkeit im gerenderten Spiel OFFEN. |
+| 1 | Ziehen/Halten/Loslassen, Bergabkamera, freier Bergauf-/Rückweg | GETESTET | Simulierte Pointer-Ereignisse und Gebietswechsel; echte iPhone-/iPad-/Mac-Abnahme OFFEN. |
+| 2 | Oberer Nadelwald mit 142 Bäumen, drei Wuchsformen, Höhen-/Stärkenvariation | UMGESETZT | Waldzahl/Variation, Erreichbarkeit und Höhenbegrenzung GETESTET. Gerenderte Dichte/Lichtwirkung OFFEN. |
+| 2 | Farne, Heidelbeerunterholz, Sauerklee, Moose, Äste, Wurzeln, Felsen; Waldlichtung | UMGESETZT | Instanzgeometrie, Weg zur Lichtung und Entdeckungsbelohnung technisch GETESTET. |
+| 3 | Bildbasierter alpiner Kies-/Erdpfad im bestehenden Gelände | UMGESETZT | Vollständige Textur eingebunden; Wege folgen dem Terrain und Aussparungen an Wasser. Sichtprüfung OFFEN. |
+| 4 | Eigene nächtliche 2D-Szene, auch als Hochformatfassung | UMGESETZT | Canvas2D-Zeichnung mit echten Bilddateien bei vier Flächengrössen GETESTET. Browser-CSS und Geräte OFFEN. |
+| 4 | Stock bewegen, vier Seiten drehen/bräunen, Hitze/Abstand, Verbrennen/Rauch, Belohnung/Essen | GETESTET | Regeltests bei 30/60 fps, Pointer-/Tastaturbedienung, Inventar/volle Tasche/Mehrfachversuch und Szenenwechsel geprüft. |
+| 4 | Sanfter prozeduraler Natur-/Feuerklang | UMGESETZT | Audio ist nicht abgehört; akustische Abnahme OFFEN. |
+| 5 | Kleiner See mit Unterwassersteinen, Ufer, sieben Fischen, Fischringen und statischer 128px Reflexionsaufnahme | UMGESETZT | Fischgeometrie und Animation GETESTET. Reflexion erfordert GPU, deren Darstellung ist OFFEN. |
+| 5 | 2D-Angeln mit Auswurf, Pose, Bissfenster, Anschlag und kontrolliertem Einholen | GETESTET | Drei Fischarten mit Grössen/Kraft; Gewinne, verpasster Biss, Schnurbruch, lose Schnur, Inventar und Speicherung geprüft. |
+| 6 | Neuer Holztrog-Werkstoff, Wasserstrahl, Spritzer/Ringe, Kies und Moos | UMGESETZT | Geometrie/Wasserfunktionen GETESTET. Gerenderte Brunnenwirkung OFFEN. |
+| 6 | Quellwasser trinken, Flasche und Eimer füllen, Wasser für Tiere/Rezepte | GETESTET | Standortprüfung, Verbrauch, Versorgung und gespeicherte Flüssigkeit geprüft. |
+| 7 | Naturmaterialien, Unterholz und Tierformen weiterentwickeln | IN ARBEIT | Neue Wald- und Brunnenmaterialien; vorhandene Fell-/Blüten-/Heu-/Getreide-/Felskarten erhalten. Zwei räumliche Füchse ergänzt. Alle Tierarten und Gipfel noch nicht auf Referenzniveau abgenommen. |
+| 8 | Wiederverwendbare 2D-Szenenoberfläche mit Bildladen, Eingabe, Pause/Rückkehr und Spielstand | GETESTET | Rösten und Angeln nutzen denselben Ablauf. Weitere eigenständige Bild-Minispiele für Werkbank, Tierpflege, Obst und Kletterwand OFFEN. Bestehende Aktivitäten bleiben erhalten. |
+| 9 | Inventar, Energie, Sättigung/Flüssigkeit, vier neue Rezepte, Fischverkauf und vier neue Aufgaben | GETESTET | Volle Tasche, doppelte Belohnungen, gespeicherte Versuche, Rezepte und Verkäufe geprüft. Angel-Leihmaterial darf nicht verkauft werden. |
+| 10 | Automatische Anwendungs-/Regel-/Geometrie-/Canvas-Prüfung | GETESTET | Aktuelle Protokolle im Projekt nach Abschluss dokumentiert. |
+| 10 | Tatsächliche iPhone-/iPad-/Mac-Prüfung, GPU-Bildvergleich, Hörprobe und gemessene Performance | OFFEN | Keine verfügbare Browsersteuerung/GPU-/Hardware-Abnahme. Keine Behauptung, diese Prüfungen seien durchgeführt. |
+
+## Verwendung
+- Rösten: Zelt auf der Alp anklicken, herangehen und die Bildszene öffnen. Alternativ am Seeplatz «Marshmallows am Feuer rösten». Einen Marshmallow benötigt man pro Versuch. Beim ersten Öffnen ohne Vorrat gibt es einmalig drei Stück; weitere sind im Dorfladen erhältlich. Stock auf der Szene ziehen, «Drehen» halten, dann «Vom Feuer nehmen». Perfektes Rösten ergibt einen Snack mit 32 Energie; normale Röstung 18. Verbranntes ist nicht essbar.
+- Angeln: Angelplatz am trockenen südlichen Ufer des kleinen Sees, nahe (28, −9). Leihangel nehmen oder Angel an der Werkbank herstellen. Beim Biss anschlagen, dann Einholen halten und bei hoher Spannung loslassen. Fische im Rucksack beanspruchen Platz. Drei neue Fischgerichte stehen in der Küche bereit.
+- Wichtige Aktionen werden sofort und laufende Versuche etwa alle drei Sekunden gespeichert. Schliessen pausiert einen Versuch; Wiederöffnen setzt ihn fort. Abbrechen verbraucht einen bereits aufgesteckten Marshmallow. Keine Gar-/Fangfortschritte während geschlossener Seite.
+
+## Ergänzung 18. Oktober 2026 – Auftrag 4.0
+
+| Bereich | Status | Tatsächlicher Umfang |
+| --- | --- | --- |
+| Lokaler Speicher, zweite Ablage, Kontotrennung | UMGESETZT | Recovery und Speicherfehler mit kontrollierten Speicheradaptern GETESTET. Tatsächliche IndexedDB-/Safari-Abnahme OFFEN. Ursprünglicher Nutzerfehler nicht reproduziert. |
+| Supabase Auth und Cloud-Synchronisation | UMGESETZT | Im Spiel integriert, Mock-Auth/CAS/Offline/Abmeldung GETESTET. SQL-Ausführung, Live-Auth/RLS und Geräteabgleich OFFEN. |
+| SQL-Migration und Einrichtung | UMGESETZT | Ausführbares Skript und Schrittanleitung vorhanden, **nicht ausgeführt**. Direkte Tabellenmutation entzogen, CAS-RPC vorbereitet. |
+| Nähere Innenkamera inkl. Stall | UMGESETZT | Projektion und simulierte Mobilinteraktionen GETESTET. Echte visuelle Geräteabnahme OFFEN. |
+| Grössere Marshmallow-/Feuerdarstellung | UMGESETZT | Canvas2D und ursprüngliche Spielregeln GETESTET. Browser-CSS/Touchkomfort OFFEN. |
+| 30-Minuten-Tag, Sonne, Mond, Sterne | UMGESETZT | Uhr, Farm-Tageswechsel, Schlafzeit und Save-Migration GETESTET. Visuelle Abnahme OFFEN. |
+| Regen/Schnee, sanfte Wetterübergänge | IN ARBEIT | Auf der Alp dargestellt und gespeichert. Schneedecken, Pfützen, Wind, Naturgeräusche und Gameplayfolgen OFFEN. |
+| Neue Berg-/Felsbilder | UMGESETZT | Zwei neue Originale erhalten; Felsmaterial auf 3D-Geometrie eingebunden. Panorama als Vorlage/Bildansicht. Vollständiger Geometrieumbau OFFEN. |
+| Anti-Manipulation und Kontolöschung | OFFEN | CAS schützt vor unbeabsichtigtem Überschreiben, nicht vor eigenhändig manipulierten Offline-Spielwerten. Kein Self-Service zur Löschung des Auth-Kontos. |
+
+Details: `docs/PRUEFUNG-20261018.md`, `docs/SUPABASE-EINRICHTUNG.md`, `supabase/migrations/20261018_game_saves.sql`.
+
+### Speicherpriorität und Namen, 18.10.2026
+
+UMGESETZT: Micha, Nancy, Noemi, Niklas, Lenja und Werner unter unveränderten Charakter-IDs; Figurennamen in Exportdateien. Offline-Bereitstellung aller Laufzeitdateien über einen Service Worker und Hinweis zum Vorbereitungsstatus in den Einstellungen. GETESTET: Cache-VM mit Netzwerkfehlern, sämtliche sechs Namen/Save-IDs, Speicher-/Cloud-Panel-Tests und erneut simulierte mobile Integration. OFFEN: tatsächliche Safari-Installation/Offline-Neustart und Live-Supabase-Abgleich. Die Konto-/Gastspielstände bleiben wie dokumentiert; keine sechs unabhängigen Figurenspeicherplätze eingeführt.
+
+### Spielstandübersicht und Ladefeedback
+
+UMGESETZT: Aktiver Stand im Willkommens- und Kontodialog; Cloud/Gerät/Gast vor dem Laden vergleichbar, angemeldetes Konto, Quelle, Ladezeit, echte Fortschrittswerte, lokale Speicherung und letzte Cloud-Bestätigung getrennt. Lade-/Synchronisierungsanzeige ohne erfundene Prozentwerte. GETESTET: tatsächliche Werte, verzögerte simulierte Serverantwort, Cloud-Fehler/Konflikte und mobile Simulation; Browser-/Geräteabnahme OFFEN.
+
+### Anmeldung genügt – automatische Kontospeicherung
+
+UMGESETZT und mit simuliertem Backend GETESTET: automatisches Laden bestehender Konten, automatische Zuordnung beim ersten Konto, Autosync nach lokalen Speicherungen, direkter «Jetzt speichern»-Knopf. Gastübernahme kein Pflichtschritt mehr. Download/Import bleiben. Nur tatsächliche Konflikte erfordern eine Auswahl; Browser-/Geräteabnahme OFFEN.
+
+### Speicherknopf mit Bestätigung
+
+UMGESETZT: «Speichert …», grün/Häkchen nach bestätigtem Erfolg, gelb bei lokaler Sicherung ohne Cloud-Bestätigung, rot bei Fehler/Konflikt. Beide Speicherknöpfe, sanfte Animation und reduzierte Bewegung berücksichtigt. GETESTET mit verzögerter Serverantwort und parallelem Autosave/manuellen Speichern; echte Geräte-/Sichtprüfung OFFEN.
+
+### Natürlichere Bewegungsabläufe der sechs Hauptfiguren
+
+UMGESETZT: Die Interaktionshaltung wird nicht mehr während des Gehens zu Möbeln aktiviert. Knie beugen sich anatomisch nach hinten; Knöchel, Schuhe, Sohlen, Manschetten und Schnürung bewegen sich gemeinsam. Ein berechneter Gehzyklus unterscheidet Stand- und Schwungbein, koppelt die Schrittphase an die tatsächliche Bewegung und begrenzt überhöhte Schrittfrequenzen. Lockerer gegenläufiger Armschwung, getrennte Ellbogenbewegung, leichte Oberkörper-/Kopfgegenbewegung und weich gedämpftes Anlaufen/Anhalten. Normales Gehen auf der Alp auf 2.2 Welt-Einheiten/s, Rennen auf 3.63, Innengehen auf 1.8 abgestimmt. Figurenauswahl und Speicher-IDs bleiben erhalten.
+
+GETESTET: inverse Beinberechnung mit Vorwärtskontrolle, korrekte Knie-/Ellbogenrichtungen, gegenläufige Arme, sanfter Stopp, Schuhhierarchie/Bodennähe im Stand, alle sechs Figuren und 30/60 FPS. Haus-/Mobil-/Bergabsteuerung in Simulation geprüft. OFFEN: tatsächliche gerenderte Natürlichkeit und Touchkomfort auf iPhone/iPad/Mac.
+
+
+### Ausbauphase: grosse Heuwiese und Alpwirtschaft (18.10.2026)
+
+| Teil | Zustand | Tatsächlicher Stand |
+| --- | --- | --- |
+| Heuwiese | UMGESETZT, regelbasiert GETESTET | 12 × 10 statt 6 × 5, vierfache Fläche; neu generierte Gras-/Samenstand-Grafik auf gekreuzten 3D-Pflanzenflächen, Höhenvariation und Wind. |
+| Heuernte | UMGESETZT, GETESTET | 32 Portionen je Spieltag, Bündel bis 8, Teilabholung bei knappem Rucksack, vier sichtbare Ballen; Nachschub nach Spielnacht. |
+| Ausbauzugang | UMGESETZT, GETESTET | «Ausbau» in derselben HUD-Zeile neben Aufgaben, zusätzlich «Ausbauen & Crafting» im Menü. Kein zusätzliches dauerhaftes Fenster. |
+| Bauflächen | UMGESETZT, geometrisch GETESTET | Westliche Heuwiese, östliche Restaurant-/Hotel-/Bad-/Spielplatz-Terrassen, Zusatzweide im Osten, Heusilo im Westen; Lageplan im Ausbau-Menü. Kein Überschneiden mit bestehendem Hof/Feldern; Talweg bleibt offen. |
+| Zehn neue Ausbauprojekte | UMGESETZT, GETESTET | Alphütte → Restaurant → Panoramabad → Spielplatz → weitere Gästeetage → Restaurant-Erweiterung → Hotel. Zusatzweide, Feldgeräte, Heusilo nach erster Hüttenrenovierung. Drei bisherige Projekte bleiben. |
+| Bauen | UMGESETZT, GETESTET | Feste Flächen, Geld/Material/Energie, Voraussetzungen, einmaliger atomarer Abschluss, sichtbare Modelle und passende Kollisionen; Gebäudematerialien entsprechen Holz/Stein/Schindeln des Hofs. |
+| Geräte & Lager | UMGESETZT, GETESTET | Bessere Geräte reduzieren Mähenergie von 5 auf 2; grosses Heulager erweitert 64 auf 256 Portionen. Vorhandene ältere Vorräte werden bewahrt. |
+| Erster Restaurant-/Hotelbetrieb | UMGESETZT, GETESTET | Tagesgäste unterschiedlicher Herkunft, selbst gekochte Speisen, Verbrauch von Vorräten, Gästezahl, Zufriedenheit, Umsatz; Hotelbuchungen mit Frühstück/Wasser und Tageslimit. |
+| Personal | UMGESETZT, GETESTET | Fünf Stellen: Käserei, Schokolade, Küche, Service, Hotel. Einstellung mit Spielgeld, Lohn pro tatsächlich ausgeführtem Auftrag; Produktion verbraucht Zutaten, Küche/Service/Hotel helfen im Menüablauf. Keine unbemerkten Löhne bei geschlossenem Spiel. |
+| Speichern | UMGESETZT, GETESTET | Neue Bauten/Betriebswerte/Personal/Teilernte über bestehenden Gerätespeicher, Export und Cloud-Save-Payload. Migration älterer Version-11-Spielstände erhält vorhandenen Fortschritt. Keine Supabase-Schemaänderung notwendig. |
+| Abnahme auf Geräten | OFFEN | Viewport-Simulation für iPhone, iPad und Mac bestanden. Kein tatsächliches Safari-/GPU-/Hardware- oder ästhetisches Abnahmeurteil. |
+| Vollständige Tourismuswelt | OFFEN | Sichtbare An-/Abreise von Touristen, räumlicher Tischservice, individuelle Wünsche/Warteschlangen, ausgebaute begehbare neue Hotel-/Restaurant-Innenräume und Verlegung der bestehenden Herde auf die Zusatzweide. Der aktuelle Betrieb ist ein spielbarer Menüablauf. |
+
+Nachweise: `tests/estate-development.mjs`, `tests/estate-development-world.mjs`, `tests/integration.mjs --estate-only`, `tests/alp-life.mjs`, `tests/estate.mjs`. Zusätzlich Haus-/Bergab-/Mobilintegration, Gelände-/Wegabgleich, bestehende Wald-/Hofnavigation, Speicher-/Cloud-Simulation und Offline-Cache geprüft. Der vollständige alte Integrationstest bestand nach der Bewegungsänderung; die spätere Ausbauphase wurde mit den genannten fokussierten Prüfungen abgedeckt. Kein echter angemeldeter Supabase-Schreibtest durchgeführt.
+
+Die neu generierte Originalgrafik und ihr Prompt liegen im Projekt unter `docs/materials/hay-meadow-20261018.*`; im Spiel wird die verkleinerte WebP-Datei verwendet. Zwei bestehende 2D-Hintergründe wurden aus den erhaltenen Originalen für die Auslieferungsgrenze verkleinert. Originale bleiben erhalten.
+
+
+### Minispiele, gemütliche Innenräume und Bergsee (18.10.2026, Folgephase)
+
+| Arbeit | Zustand | Nachweislich integriertes Ergebnis |
+| --- | --- | --- |
+| Marshmallow-Rückmeldung | UMGESETZT, GETESTET | Eigene Hinweise für zu kalt, gute Hitze, zu heiss, jetzt wenden, rundum fertig, roh und verbrannt. Vier getrennte Seitenanzeigen; fertige Seiten grün, Gefahr/Fehlschlag rot mit Text und Symbol. Hitzeanzeige unabhängig von Fertigmeldung. |
+| Einheitliche Spielrückmeldung | UMGESETZT, GETESTET | Farbige und beschriftete Ereignisse/Ergebnisse bei Reitparcours, Slalom, Klettern, Zielspielen, Retro-Spielen, Jass und Käsewerkstatt. Slalom- und Sturzhinweise bleiben kurz sichtbar. |
+| Angeln in Ego-Ansicht | UMGESETZT, GETESTET | Animierter Auswurf, Köderwahl (Wurm kostenlos; Brot/Beere werden verbraucht), Pose/Bissfenster, echte Schnurspannung, Fischbewegung und Zugkraft nach Art/Grösse. Kreisförmige Touch-/Mauskurbel: vorwärts einholen, rückwärts Schnur lösen; zusätzlich grosse Halteknöpfe und Tastatur. Anschlagen reagiert direkt auf Pointerdown. |
+| Angel-Ergebnisse | UMGESETZT, GETESTET | Eindeutige Reissgefahr-/Locker-/Bissmeldungen; gerissene Schnur, entkommener/verpasster Fisch und Fang klar unterschieden. Sichtbarer Fortschritt zum Ufer, Fanggewicht und echte Inventaraufnahme. |
+| Fisch am Zeltfeuer | UMGESETZT, GETESTET | «Gefangenen Fisch am Feuer rösten» öffnet das bildbasierte Ego-Minispiel. Ein Fisch und ein Holz werden eingesetzt. Drehen/Abstand/Bräunung wirken tatsächlich; roher Fisch kommt zurück, verbrannter Fisch ist nicht essbar. Gerösteter Fisch gibt beim Essen bis zu 62 Energie; Fisch und Gericht sind im Dorfladen verkäuflich. |
+| Büsche und Sträucher | UMGESETZT, geometrisch GETESTET | Neue generierte Heidelbeer-/Herbststrauchgrafik, 68 Gruppen in 7 organischen Pflanzbereichen, variierende Höhen/Wuchsrichtungen und dezenter Wind. Heuwiese, Bauflächen und geprüfte Wege bleiben frei. |
+| Innenausbau | UMGESETZT, geometrisch GETESTET | Generierte Lärchenholz-, Kalkputz-, Naturstein- und Karostoffmaterialien für die vier weiterhin begehbaren Ebenen. Geschnitztes Betthaupt, Eckbankkissen, warme Wandlaternen, Bergblick durch Fenster, Steinbogen im Käsekeller und geordnete Werkstattdetails. Das generierte Vier-Raum-Bild dient als Gestaltungsvorlage; es ist kein Screenshot des 3D-Spiels. |
+| Zeltplatz | UMGESETZT, GETESTET | Neue generierte Nachtbilder für Quer-/Hochformat im Ego-Minispiel. Eben modellierter trockener Stellplatz, Laterne, Holzstapel, Becher, Naturstein-Windschutz und vorhandene Schlaf-/Feueraktionen. |
+| Bergsee | UMGESETZT, geometrisch GETESTET | Durchsichtigeres Wasser, drei Fischarten mit Grössenvariation/Flossen, korrigierte Schwimmtiefe oberhalb des Seegrunds, bestehende Wellen/Reflexionen/Ufersteine. |
+| Speichern und Bestand | GETESTET | Aktive Angel-/Röstphasen, Fisch-/Köder-/Holzverbrauch, Inventar, Energie und Geld geprüft. Alte Spielstände ohne neue Aktivitätsfelder bleiben lesbar. Komplette automatisierte Hauptintegration sowie zusätzliche Käse-/Haus-/Mobil-/Weltprüfungen bestanden. |
+| Tatsächliche Geräteabnahme | OFFEN | Canvas2D-Bilddarstellung und Pointer-/Tastenereignisse mit mehreren Viewports geprüft, ein 390px-Camp-Canvas visuell kontrolliert. Keine reale Safari-/WebGL-/Hardware-, CSS-Layout- oder Leistungsabnahme. |
+
+Prüfungen: `tests/challenge-feedback.mjs`, `tests/cozy-ui.mjs`, `tests/cozy-activities.mjs`, `tests/cozy-redesign-world.mjs`, vollständiges `tests/integration.mjs` plus `--cozy-games-only`, `--dairy-only`, `--home-only`, `--mobile-only`; Gelände, bestehende Hof-/Waldnavigation, Ausbau, Jass, Käseproduktion, Inventar/Wirtschaft, Cloud-Simulation und Offline-Cache. Der Käsekellertest wartet nun begrenzt bis zur echten Regal-Ankunft, statt bei langsamem Gehen nach einer festen zu kurzen Zeit einen alten Treppendialog als vermeintlichen Keller zu zählen.
+
+Neue Originalbilder und Generierungsangaben liegen unter `docs/materials/*20261018*`. Verwendete Grafiken/Materialien sind im Laufzeitpaket eingebunden. Gegenstände auf Möbeln bleiben an ihre Gruppen gebunden; die bestehende Möbelplatzierung bleibt erhalten. Für das Auslieferungslimit wurden zwei bestehende Oberflächentexturen aus den erhaltenen Originalen neu verkleinert; die Musik blieb unangetastet.
+
+
+---
+
+# Portmann Alp – Lichtplan und Ausbauphase
+
+Stand: 18. Oktober 2026. Zustände: OFFEN, IN ARBEIT, UMGESETZT, GETESTET. GETESTET nennt ausschliesslich ausgeführte technische Prüfungen, keine visuelle Geräteabnahme.
+
+## Verbindlicher Lichtplan
+
+Alle Gebiete verwenden dieselbe gespeicherte Spielminute und dasselbe Wetter. Ein Spieltag dauert weiterhin 30 Minuten aktiver Spielzeit; Pause stoppt die Uhr. Ein Gebietswechsel setzt die Uhr nicht zurück.
+
+| Bereich | Tagsüber | Dämmerung und Nacht | Umsetzung |
+|---|---|---|---|
+| Gesamte Aussenwelt | Tageslicht und wetterabhängige Wolken | Abgedunkelter Himmel, Sterne, Mond und schwaches Orientierungslicht | UMGESETZT: eigener Szenencontroller pro Gebiet, gemeinsame Uhr |
+| Alp: Haustür, Stall, Hof, Talweg, Waldzugang, Gehege, Lagerplatz | Laternen aus | Warmes Licht auf Geometrie und Wegen; stufenloses Einschalten | UMGESETZT: echte Punktlichter, sichtbare Holz-/Eisenlaternen und Stallpendel |
+| Dorf und Stadt | Fenster neutral, Laternen aus | Fenster glühen warm; Eingänge und Verbindungswege beleuchtet | UMGESETZT: Dorfhaus plus sechs neue Chalets und Eingangslaternen |
+| Wandergebiete | Freie natürliche Sicht | Wegweiser-/Übergangslaternen und eigene Rucksacklaterne | UMGESETZT: begrenzte Lichtinseln, kein flächig beleuchteter Wald |
+| Alphütte: Wohnstube, Schlafzimmer, Werkstatt | Tageslicht | Wandlichter, Stehlaternen und indirekte warme Aufhellung | UMGESETZT: automatisch; Haussteuerung → Licht automatisch/an/aus |
+| Dorfhaus, Restaurant, Retro-Laden | Tageslicht | Warme vorhandene Leuchten plus Stehlaterne | UMGESETZT: automatisch |
+| Keller, Felsengang, Kristallgrotte | Orientierungslampen bleiben an | Orientierungslampen bleiben an | UMGESETZT: keine künstliche Tageshelligkeit unter Tage |
+| Rucksack | Laterne bleibt als Gegenstand sichtbar | Eigene Umgebung wird beleuchtet, solange Laterne im Rucksack ist | UMGESETZT: Dorfladen oder Werkbank; getrennt von erspielter Höhlenlampe |
+| Berglager | Zelt am gespeicherten Standort | Feuer nach Verbrauch von zwei Fallholz, eigener Lichtschein | UMGESETZT: Feuer aus nach Schlafen, Einpacken oder Tageswechsel |
+
+Lichtbeginn wird aus der Tageshelligkeit berechnet: unter 65 Prozent Tageslicht beginnt das sanfte Einschalten. Kein harter Lichtwechsel. Auf mobilen Geräten werden höchstens sechs Umgebungs-Punktlichter in der Nähe aktiv berechnet, auf grösseren Geräten acht. Rucksack- und mobiles Lagerlicht kommen bedarfsweise dazu. Sichtbare leuchtende Fenster sind keine zusätzlichen Schattenlichter. Punktlicht-Schatten, echte GPU-Leistung und endgültige Helligkeit auf Geräten sind noch OFFEN. Der Handschalter ist sitzungsbezogen; nach Neuladen gilt wieder Automatik.
+
+## Tatsächlich integrierter Umfang
+
+| Arbeit | Status | Umfang und Nachweis |
+|---|---|---|
+| Einheitliche Uhr in allen Regionen | GETESTET | Szenenwechsel um Mitternacht bleibt Mitternacht; Sonnenintensität und Leuchten reagieren auf dieselbe Uhr |
+| Automatische Laternen und Hausfenster | GETESTET | Tag aus, Dämmerung an, Nacht an; Punktlichtbudget und Wohnstuben-Schalter geprüft |
+| Kornfeld tatsächlich viermal grösser | GETESTET | Normales Feld 160 statt 40 m², 1440 statt 360 Halme; ausgebautes Feld 162 statt 40,5 m², 1720 statt 430 Halme. Ausbau ersetzt Grundbestand am gleichen Feld, keine überlagerten Pflanzen. Bestehende Ernteökonomie bleibt erhalten |
+| Platz für Alpwirtschaft | GETESTET | Westliche Feldfläche, östliche Restaurant-/Hotel-/Badflächen bleiben getrennt; Gelände-/Wegprüfung bestanden |
+| Dorf mit sieben Chalets | GETESTET | Bestehendes Dorfhaus plus sechs neue Modelle; Fensterrahmen, Läden, Balkone, Steindetails und geschindelte Dächer. Drei reine Wohnhäuser einschliesslich Dorfhaus; übrige Bauten tragen Dienste |
+| Dorfladen und Restaurant getrennt | GETESTET | Laden bei 14/−5,5; Restaurant bei 23/14. Die beiden Eingänge teilen keine Interaktion mehr |
+| Bäckerei, Dorfpraxis und Markt | GETESTET | Bäckerei mit Brot/Haferdrink/veganem Essen, Praxis mit kostenloser Erholung, Markt mit saisonaler Deko und Vorräten. Eingänge und Kauf-/Speicherregeln geprüft. Keine neuen begehbaren Einzelräume für Praxis/Bäckerei behauptet |
+| Herbst, Halloween, Weihnachten | GETESTET | Kaufbare Dekorationsobjekte, in der Wohnstube aus dem Rucksack auswählbar, gespeichert und bei Besitz angezeigt. Derzeit ein wählbares Wandarrangement; freie Platzierung mehrerer saisonaler Einzelmöbel bleibt OFFEN |
+| Generierte Vorlagen | UMGESETZT | Pflaster und Marktprodukte als Laufzeittexturen integriert. Laternen-, Chalet- und Personenbilder sind Modellierungsreferenzen; sie sind keine Screenshots des Spiels und keine automatisch daraus rekonstruierten 3D-Scans |
+| Dorfpersonen | UMGESETZT | Vier bestehende Auftragspersonen mit gegliederten Körpern und Gangsteuerung; Ärztin/Bäcker an Diensten, zwei Besucher folgen echten berechneten Wegen. Individuelle Gesichtsqualität/optische Endabnahme OFFEN |
+| Pflaster und Wege | UMGESETZT | Generiertes helles Schweizer Pflaster auf gewölbtem Dorfplatz und Dorf-/Stadtwegen; übrige Aussenwege erhalten helle alpine Wegtextur statt einfarbigem Streifen. Kein vollständiger neuer Wegebau in jedem Gebiet behauptet |
+| Ortsnamen und Karten | GETESTET | Ortsname kurz eingeblendet, keine dauerhafte grosse Fläche. Lokale Karte mit auseinandergerückten Nummern, Verbindungslinien und Legende statt überlappender Langtexte; Weltkarte mit Nummernlegende |
+| Tragbares Berglager | GETESTET | Zelt besitzen, sichere freie ebene Stelle wählen, aufstellen, zwei Fallholz verbrauchen, schlafen, löschen/einpacken. Standort und Feuerzustand sind Bestandteil des Spielstands; alte Stände werden ergänzt |
+| Fallholz in Berggebieten | GETESTET | Zusätzliche Sammelstellen in Panoramaweg, Wald, Blumenhang, See, Hochalp, Grat, Gipfel, Reitweide und Talweg; täglicher Nachschub und vorhandenes Inventarsystem |
+| iPhone/iPad/Mac | IN ARBEIT | Vier Viewports im Anwendungsmodell sowie mobile Bedienung geprüft; tatsächliche Safari-/GPU-/Geräteabnahme und gemessene Bildrate OFFEN |
+
+## Bedienung
+
+- Lab: zum Dorfladen im Bergdorf gehen; in der Karte ist er als eigenes Ziel enthalten.
+- Rucksacklaterne und leichtes Bergzelt: im Dorfladen kaufen oder nach Rezept an Werkbank/Ausrüstungsplatz herstellen.
+- Unterwegs: Menü → Rucksack → Bergzelt & Lagerfeuer. Neben dem Weg eine freie, ausreichend ebene Stelle suchen. Das Zelt ist wiederverwendbar. Feuer braucht zwei Fallholz.
+- Innere Beleuchtung: in der Alphütte Haussteuerung öffnen und „Licht: automatisch“ wechseln. Draussen schalten Leuchten automatisch.
+- Deko: am Dorfmarkt kaufen; in der Hütte im Rucksack „In der Wohnstube dekorieren“ wählen. Einlagerung entfernt den Besitz aus dem Rucksack und damit die aktive Anzeige bis zum erneuten Einpacken.
+
+## Offene Qualitätsabnahme
+
+Es wurden keine echte iPhone-/iPad-/Mac-Hardware, keine Safari-Browserdarstellung, keine GPU-Screenshots und keine gemessene mobile Bildrate geprüft. Referenzbilder allein beweisen nicht, dass die 3D-Modelle bereits dieselbe fotografische Detailqualität besitzen. Die Bildqualität der neuen Gebäude, Personen, Laternen und Landschaft bleibt im Spiel visuell abzunehmen. Bestehende Käseproduktion, Inventar, Aufgaben und Speichersysteme müssen erhalten bleiben.
+
+
+## Ausgeführte Prüfungen dieser Phase
+
+- `tests/lighting-village-expedition.mjs`: reale Feldflächen, statisch gebündelte Chaletdetails, erreichbare Dorfeingänge, gegliederte Dorfpersonen, Lichtumschaltung, Nachtfenster, Punktlichtbudget, Wohnstuben-Schalter, Käufe, Deko, Inventar, Lager/Feuer/Holz/Schlafen/Einpacken und Speichervalidierung.
+- `tests/integration.mjs --lighting-only`: tatsächliche gebundene Kauf-/Praxis-/Markt-/Zelt-Steuerelemente, Lab kaufen, Nachtlaterne, Kartennummern, Restaurantwechsel bei unveränderter Nacht, sicherer Zeltplatz, Feuer, Holzverbrauch, Schlafen und gespeicherter Lagerzustand. Simulierte Grössen: 390×740, 844×390, 1024×768, 1440×900.
+- Vollständige `tests/integration.mjs`: bestehende Figurwahl, Speichern, Haus-/Stallbedienung, Dorfaufträge, Ski-/Zielspiele, Jass, Arcade und Höhlenlampe sowie Ausbau bestanden. Anschliessende Änderungen an statischem Gebäudebatching, NPC-Ausstattung, Lagerplatzprüfung und Markierungen mit den fokussierten Prüfungen oben abgedeckt.
+- `tests/integration.mjs --mobile-only` und `--navigation-only`: mobile Menüs, Haus-/Stallkamera, Floor-Taps und bestehende Kartennavigation bestanden.
+- `tests/terrain-grading.mjs`: 23’255 Wegflächen, 86 unabhängige Bodenstrahlen, Weg-/Laufhöhen und Fundamente, durchgehender Bachfall/trockene Brücke bestanden.
+- `tests/development-world.mjs`, `tests/cozy-redesign-world.mjs`, `tests/estate-development-world.mjs`: Hof-/Waldnavigation, alle bestehenden Hofinteraktionen, grosse Ausbauflächen und Abstieg, Dekorationsräume, Zeltuntergrund und Fische bestanden.
+- `tests/challenge-feedback.mjs`, `tests/storage-cloud-weather.mjs`: Minispielregeln, Inventar/Energie, lokale Sicherung, Konto-Trennung, simulierte Cloud-Konflikte, Tagwechsel und gespeichertes Wetter bestanden. Kein neuer echter authentifizierter Supabase-Schreibtest behauptet.
+- `tests/offline-cache.mjs`: Laufzeitdateien und Offline-Shell vollständig; Cloud-/Auth-Aufrufe nicht im Offline-Cache. Syntaxprüfung und `git diff --check` bestanden.
+
+Bei der Regression wurden zwei veraltete Integrationsannahmen angepasst: die Modellzugriffs-Referenz der Dorfpersonen blieb kompatibel; der Restauranttest verwendet nun den tatsächlich verlegten Eingang aus der Gebietskonfiguration. Der echte Eingang ist auch im Vier-Viewport-Bedientest geprüft.
+
+Neue Quellen: `docs/materials/lantern-reference-20261018.png`, `village-reference-20261018.png`, `village-people-reference-20261018.png`, `swiss-paving-20261018.png`, `market-goods-20261018.png` und Generierungsangaben in `licht-dorf-20261018-prompts.json`. Bildreferenzen sind keine Spielscreenshots. Für die Paketgrösse wurden bestehende Laufzeitbilder aus erhaltenen Originalen optimiert; Musikdateien wurden nicht verändert.
+
+Zusatzprüfung: Alle neun neuen Fallholzstellen in ihren tatsächlichen Regionswelten ab dem jeweiligen Einstieg erreichbar; echtes Sammeln gibt drei Holz, und der Spielstand mit den neuen Sammelkennungen bleibt gültig.
+
+
+## 18.10.2026 – Jonny, Abfahrten und Gipfelhütte
+
+UMGESETZT: Jonny mit drei wählbaren Stufen. Einfach benötigt 3 von 4 Hürden für die Aufgabe. Sportlich und Profi verlangen 4 von 4 und höhere Geschwindigkeit bzw. Hürden. Vordergrund-Pferd während der Ich-Perspektive ausgeblendet. Geschlossener Ergebnisdialog lässt sich wieder öffnen; unterer Ausstieg beendet die Runde jederzeit. Untere Ausstiege auch für Ski, Zielspiel, Arcade, Klettern, Jass und die Cozy-Minispiele.
+
+UMGESETZT: Fahrrad und Schlitten im Unterstand, eigenständige 480-m-Abfahrten mit Lenken, Bremsen, Sprüngen, Hindernissen, Kontrolltoren und speicherbarer Fortsetzung. Einmalige Aufgabenbelohnungen. Shop mit Lab, Salz, Milch, Kakao, Zucker, Werkzeugen und Baumaterialien; vegane Schokolade als Rezept. Neue generierte Wander-, Wald-, Bauern- und Geröllwegtexturen sowie vier Wiesenvarianten technisch eingebunden. Kies am Wegrand ohne neue Kollisionsbarrieren.
+
+UMGESETZT: Daniels Gipfelhütte mit begehbarem Innenraum, zwei Betten, Übernachten und Rückweg; Daniel als ansprechbarer Bergführer. Gipfelzugang und Fundament angepasst. Winterpanorama und Schneetextur im Ski- und Schlittenbereich. Daniel- und Hüttenbilder dienen als Gestaltungsvorlagen für die gebauten 3D-Modelle, nicht als behauptete originalgetreue Rekonstruktion. Sommer-/Winterabfahrten sind separat wählbar; ein Jahreszeitenkalender ist damit nicht umgesetzt.
+
+GETESTET: vollständige bestehende Node/VM-Integration; fokussierte Jonny-Prüfung im iPhone-Hoch-/Querformat einschließlich 3/4-Erfolg, Dialog schließen/wieder öffnen und Ausstieg; tatsächliche untere Ausstiege in Ski, Zielspiel, Arcade, Klettern und Jass; Schlafen/Speichern in Daniels Hütte. Regeltests für beide Abfahrten, Tore, Bremsen, Sprünge, Kollisionen, Belohnungen und Save-Migration. UI-Ereignisse in vier Bildschirmgrößen mit Renderer-Stub; Weltgeometrie, erreichbare Interaktionen und endliche Kameramatrizen. Cozy-Canvas-Prüfungen bestanden. Geländeprüfung: 23.255 Straßenflächen, 86 unabhängige Bodenstrahlen, trockene Brücke und kontinuierlicher Bachabfall. Cloud-/Speicher-/Wetter-Regressionsprüfung bestanden; keine neue authentifizierte Live-Supabase-Prüfung behauptet.
+
+OFFEN: visuelle Abnahme mit echtem Browser/GPU und echten iPhone-, iPad- und Mac-Geräten. Diese Umgebung erlaubt nur Node/VM-/Canvas-Prüfungen; daraus folgt keine bestätigte Geräteperformance oder endgültige Bildqualität. Weitere Natur-/Charakter-Verfeinerung bleibt Teil des Gesamtauftrags.
+
+
+## 18.10.2026 – Durchgängige Wege, Natur, Holz und Bikepark
+
+| Arbeit | Zustand | Ergebnis |
+| --- | --- | --- |
+| Wege und Abzweigungen | UMGESETZT / GETESTET | Gemeinsame Weltkoordinaten für Wegtexturen und Rundungen; gleiche Oberflächen im Alp-, Wald- und Bergwegenetz. Regionalwege auf dem Gelände trianguliert, Steg-/Brückenbereiche separat erhalten. Ein zuvor ausgefallener Bach-Rastweg endet jetzt an einem erreichbaren Uferpunkt. |
+| Sichtbare Grenzen | UMGESETZT / GETESTET | Instanzierte Weidezäune genau entlang der bestehenden begehbaren Grenzen auf der Alp und den äusseren Naturgebieten. Keine zusätzlichen unsichtbaren Sperren. Wege ausserhalb des begehbaren Alp-Kartenausschnitts zurückgeschnitten; Gebietswechsel bleiben über Wegweiser erreichbar. |
+| Wiesen und Büsche | UMGESETZT / GETESTET | Neue generierte Atlasvorlage für Hasel, Wildrose, Heidelbeere und blühenden Alpenstrauch. 205 Buschstandorte, 7.793 Blumen und 11.623 Grasbüschel, verteilt auch auf die vier äusseren Wiesen. Wege, Gewässer, Nutzfelder und Ausbauparzellen bleiben frei. |
+| Erneuerbare Holzversorgung | UMGESETZT / GETESTET | Sechs zusätzliche tägliche Fallholzstellen und sechs gelb markierte Nutzbäume. Einmaliges kostenloses Beil am Holzplatz neben dem Haus. Fällen kostet 9 Energie, liefert 4 Holz, zeigt eine Fallanimation und einen verbleibenden Stumpf. Nachwuchs nach drei Spielnächten. Holz kann am Holzplatz in das bestehende Lager eingelegt und entnommen werden. Kein Abholzen beliebiger Kulissenbäume. |
+| Downhill | UMGESETZT / GETESTET | Vier 9 m lange gebogene Schanzen mit 1,5 m Aufbau, Holzdeck/Stützen und breiter Auslauf-Landung. Gemeinsames Höhenprofil für Boden, Rampe und Fahrkamera. Tatsächlicher Absprung über die Kante ab ausreichendem Tempo. Detailliertes vollgefedertes Bike mit Stollenreifen, Speichen, Scheibenbremsen, Federung und Bremsleitung; derselbe Aufbau steht im Unterstand. Zusätzliche Felsen, Büsche, Lärchen, Tannen, Blumen und Gras am Kurs. Lenkergriffe rechnerisch im iPhone-Hochformat sichtbar und unterhalb der Fahrbahnsicht. |
+| Acoustic Folk | UMGESETZT / GETESTET | Aus der gelieferten Original-MP3 neu als Stereo-Opus mit 48 kbit/s erstellt, statt der bisherigen Mono-Datei mit 24 kbit/s. Begrenzt und mit Pegelreserve nach dem Dekodieren. Keine wiederholten play()-Aufrufe bei bereits laufender Musik. Der konkrete vom Nutzer gehörte Fehler wurde nicht auf einem echten iPhone reproduziert; Kompression ist eine plausible, keine bewiesene Ursache. |
+| Musikauslieferung | UMGESETZT / GETESTET | Summer Walk bleibt erster Haupttitel, vollständig erhalten, nun als kompakte Stereo-Opus-Datei. Frühere MP3, vorherige Folk-Datei und Originalaufnahme im Quellarchiv bewahrt; übrige Titel erhalten. Für die begrenzte Auslieferungsgrösse wurden auch Vorschaubilder und Texturkopien komprimiert; Originale separat aufbewahrt. |
+
+Prüfnachweise: Vollständige bestehende Node/VM-Integration bestanden. Neue Regel-/Weltprüfungen für Holz, drei Nächte Nachwuchs, Werkzeug, Inventar, Speichern, Randzäune, Weg-UVs in sechs Regionen, kontinuierliche Schanzen und Absprung. Tatsächliche Hauptspiel-UI im simulierten iPhone-Format: Beil nehmen, Baum fällen, Fallanimation, Holz einlagern/entnehmen, Spielstand wieder dekodieren. Mobile HUD-/Haus-/Stall-Prüfung, Jonny-Erfolg/Ausstieg, Downhill-UI in vier Formaten, sämtliche Alp-Interaktionspunkte, Daniels Hütte/Gipfel sowie Licht-/Dorf-/Expeditions-Regressionsprüfungen bestanden. Terrainprüfung: 23.738 bodenkonforme Strassenflächen und 88 unabhängige Bodenstrahlen, trockene Brücke und unveränderte Gebäudefundamente. Alte Naturprüfung verlangte pauschal flache Wegnormalen; angepasst auf tatsächlich aufwärts gerichtete Dreiecke für erlaubte Steilhänge, mit separater exakter Bodenkonformitätsprüfung.
+
+OFFEN: Browser-/GPU-Bildabnahme, echte Touch-Ergonomie, Geräteperformance und Hörtest auf iPhone, iPad und Mac. Node/VM und Canvas belegen diese Punkte nicht. Auch der Bikepark-Preview ist eine Gestaltungsvorlage; er ist kein Screenshot des gerenderten Games.
+
+
+## 18.10.2026 – Bergdorf, begehbarer Dorfladen und Saison-Crafting
+
+| Anforderung | Zustand | Tatsächliche Umsetzung |
+| --- | --- | --- |
+| Dorfladen betreten | UMGESETZT / GETESTET | Eigener Innenraum, Eingang am sichtbaren Chalet, freies Herumlaufen, Verkaufstheke, vier interaktive Warenregale, Verkäuferin und Rückweg auf den Dorfplatz. Kein blosses Einkaufsfenster vor einer geschlossenen Fassade mehr. |
+| Sortiment | UMGESETZT / GETESTET | Käsebedarf mit Lab, Milch, Salz; Schokoladenbedarf mit Kakao, Honig, Zucker und Haferdrink; Werkzeuge/Baumaterial; Proviant, vegane Speisen und Saisondekor. Kürbisse und Weihnachtsbaum im Sortiment. Käufe/Verkäufe nutzen echte Münzen, Inventar, Lagergrenzen und Speicherung. |
+| Dorfplatz und Brunnen | UMGESETZT / GETESTET | Neuer erkennbarer Naturstein-Dorfbrunnen mit gefasstem Becken, sichtbarem Wasserstrahl und animierten Ringen. Interaktion füllt Quellwasser in den Rucksack und stillt den Durst, sofern Platz vorhanden. Sitzbänke am Platz. |
+| Wege und Häuser | UMGESETZT / GETESTET | Alle geplanten Pflasterabzweigungen nach Fertigstellung der Hauskollisionen neu um Hindernisse geführt und geglättet. Kleine Chalets und Bäckerei mit niedrigeren Dächern, erhaltenen normal hohen Türen und ohne den grossen Balkon der mehrstöckigen Gebäude. Bäckerei, Restaurant und Wohnhäuser zum Dorf hin gedreht; Eingänge und Kollisionen entsprechend angepasst. |
+| Tafeln und Orientierung | UMGESETZT / GETESTET | Zusätzliche Eingangstafeln am Dorfhaus, Laden und Restaurant entfernt. Dorfhaus trägt seinen Namen; Laden und Restaurant sind über ihre Fassade anklickbar und in der Karte als Gehziel erreichbar. |
+| Grünes Dorf und Markt | UMGESETZT / GETESTET | Acht bepflanzte Inseln, vier Buscharten und Blumen, zusätzliche Lärchen. Pflanzinstanzen aus den neuen Pflaster-Lauflinien entfernt. Markt mit sichtbaren Waren auf dem Tresen und dreidimensionalen Kürbislichtern zusätzlich zu vorhandenen Warenvorlagen. Markt, Bäckerei und Praxis bleiben ansprechbar. |
+| Platzlaternen | UMGESETZT / GETESTET | Fünf gezielte Laternenstandorte am zentralen Platz zusätzlich zu den Eingängen. Automatische Dämmerungsbeleuchtung mit höchstens sechs gleichzeitig aktiven mobilen Punktlichtern bleibt erhalten. |
+| Deko erspielen | UMGESETZT / GETESTET | Neuer Unterbereich im Crafting: Herbstschmuck, Kürbislichter, Winterkränze/Lichter und Weihnachtsbaum. Materialien und Energie werden nur beim ersten Herstellen verbraucht; Sets bleiben dauerhaft freigeschaltet. Käufliche Sets können ebenfalls benutzt werden. |
+| Deko auf Haus und Alp | UMGESETZT / GETESTET | Echte 3D-Kürbisse, Erntekörbe, Kränze und geschmückte Tanne statt der bisherigen gedruckten Dekotafel im Haus. Aufstellen/Wegräumen auf der Alp und Auswahl in der Wohnstube gespeichert. Dekosaison Herbst/Winter manuell wählbar; kein behaupteter Jahreszeitenkalender und keine Änderung des globalen Wetterrhythmus. |
+
+Zugang: Im Dorf das Chalet mit der Aufschrift DORFLADEN anklicken und zum Eingang laufen. Im Laden öffnen Theke und beschriftete Regale den Einkauf. Über den unteren Ausgang gelangt man zurück auf den Platz.
+
+Deko: Crafting → Dekorationen für Haus & Alp → Materialien besorgen → an der Werkbank in der Alphütte herstellen. Danach auf der Alp aufstellen beziehungsweise in der Wohnstube auswählen. Herbst/Winter lässt sich in diesem Menü wechseln.
+
+Prüfungen: Neuer Welt-/Regeltest für sämtliche Dorf-/Laden-Interaktionen, beide Übergänge, alle Pflasterzweige, Häuserausrichtung, zentralen Brunnen, Pflanzen und Laternenbudget. Tatsächlicher Hauptspiel-Code im VM-Test: Laden betreten, Theken-Einkauf von Lab/Laterne/Zelt, Rückweg, Bäckerei, Praxis, Markt, Speichern an vier simulierten Bildschirmgrössen. Deko-UI an iPhone-/iPad-/Mac-grossen Viewports: Materialabzug, Baum-Freischaltung, Innen-/Aussenmodelle, Saisonauswahl, exaktes Speichern/Neustart. Alte Save-Migration, ungültige Dekodaten, bestehende Ausbau-, Alp-, Gelände-, Licht-, Wetter- und Speicherprüfungen bestanden.
+
+OFFEN: Visuelle Abnahme in einem echten Browser mit GPU sowie echte iPhone-/iPad-/Mac-Bedienung und Performance. Diese Umgebung bietet dafür keinen freigegebenen Browser. Die verwendeten Natur-/Waren-/Holz-/Steintexturen stammen aus bereits erzeugten Projektvorlagen; diese Phase hat echte 3D-Modelle ergänzt, keine neuen Bildgenerierungen behauptet.
+
+## 18.10.2026 – Alp-Wegränder, Tal und Versorgung
+
+Siehe `ALP-NATUR-ARBEIT-20261018.md`: Wegabstand der Laternen, generierter Tag-/Nachttalblick, getrennte Obst-/Tannenpflanzung, 238 Sträucher, kleine generierte Bildtiere, gedrehter Hühnerstall mit sichtbarem Auslauf sowie kompakter Mäh-/Melkfortschritt. Geometrie und neue UI-Aktionen geprüft; reale Geräte-/WebGL-Sichtprüfung weiterhin OFFEN.

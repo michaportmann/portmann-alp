@@ -1,0 +1,31 @@
+import assert from 'node:assert/strict';
+import {createRequire} from 'node:module';
+import * as T from '../dist/vendor/three.module.js';
+import {freshState,decodeSave} from '../dist/save.mjs';
+import {createWorld} from '../dist/world.mjs';
+import {createRegionWorld,walkingHeight} from '../dist/region-world.mjs';
+import {createWeatherWorld} from '../dist/weather-world.mjs';
+import {duskAmount} from '../dist/practical-lighting.mjs';
+import {stepEnvironment,environmentLight} from '../dist/alpine-weather.mjs';
+import {route,blocked} from '../dist/logic.mjs';
+import {VILLAGE_BUILDINGS} from '../dist/village-upgrade.mjs';
+import {REGIONS,GATEWAYS} from '../dist/regions.mjs';
+import {expeditionAction} from '../dist/expedition.mjs';
+import {trade,SHOP,consume} from '../dist/progression.mjs';
+import {HOF} from '../dist/hof-layout.mjs';
+const require=createRequire(import.meta.url),{createCanvas}=require('/opt/codex/runtimes/codex-primary-runtime/dependencies/node/node_modules/@napi-rs/canvas');globalThis.document={createElement:()=>createCanvas(256,256)};
+assert.equal(HOF.fields.basic.w*HOF.fields.basic.d,8*5*4);assert.equal(HOF.fields.corn.w*HOF.fields.corn.d,9*4.5*4);
+const w=createRegionWorld('village'),start={x:0,z:22};assert.equal(VILLAGE_BUILDINGS.length,6);let houses=0;w.scene.traverse(o=>{if(o.userData.kind==='village-crafted-chalet'){houses++;assert.ok(o.children.filter(c=>c.isMesh).length<18,'static chalet details batched for mobile');}});assert.equal(houses,6);
+for(const n of w.interactive){if(n.secret)continue;assert.ok(route(start,n,w.colliders).length,'reachable village '+n.id);assert.equal(blocked(n.x,n.z,w.colliders),false,'free approach '+n.id);}
+assert.notDeepEqual(GATEWAYS.find(g=>g.id==='village-restaurant'),w.interactive.find(n=>n.fodderShop));
+for(const p of w.villageKit.people.values())assert.equal(p.g.userData.kind,'walking-village-person');const old=[...w.villageKit.people.values()].map(p=>p.g.position.x);w.animated.forEach(f=>f(2));assert.ok([...w.villageKit.people.values()].some((p,i)=>p.g.position.x!==old[i]));
+const e=freshState().environment,actor=new T.Vector3(14,walkingHeight('village',14,-5.5),-5.5),kit=createWeatherWorld(w.scene,{compact:true,region:'village',height:(x,z)=>walkingHeight('village',x,z),interactive:w.interactive});
+e.minute=720;let v=kit.step(0,e,actor);assert.equal(duskAmount(v),0);assert.ok(kit.practical.fixtures.length>=5);assert.ok(kit.practical.fixtures.every(f=>f.light.intensity===0));
+e.minute=0;v=kit.step(0,e,actor);assert.equal(v.day,0);assert.ok(kit.practical.fixtures.some(f=>f.light.visible&&f.light.intensity>0));assert.ok(kit.practical.fixtures.filter(f=>f.light.visible).length<=6);
+let windows=0;w.scene.traverse(o=>{if(o.material?.userData?.nightWindow){windows++;assert.ok(o.material.emissiveIntensity>.7);}});assert.ok(windows>15);
+e.minute=720;kit.step(0,e,actor);assert.ok(kit.practical.fixtures.every(f=>!f.light.visible));e.minute=18*60;assert.ok(duskAmount(environmentLight(e))>0,'lights start before full night');
+const room=createRegionWorld('house'),rkit=createWeatherWorld(room.scene,{region:'house',height:()=>0,interactive:room.interactive});e.minute=0;assert.equal(rkit.step(0,e,new T.Vector3(0,0,1),true).label,'00:00');assert.ok(room.sun.intensity<.3);e.minute=720;assert.equal(rkit.step(0,e,new T.Vector3(),true).label,'12:00');assert.ok(room.sun.intensity>.5);
+const alp=createWorld();alp.sync?.(freshState());assert.equal(alp.homeKit.groups.basic.visible,true);const akit=createWeatherWorld(alp.scene,{region:'alp',height:(x,z)=>walkingHeight('alp',x,z),interactive:alp.interactive}),floor=alp.room.userData.home.floors.get('stube');e.minute=0;const indoorActor=new T.Vector3(110,0,2);akit.step(0,e,indoorActor,true);let active=0;floor.traverse(o=>{if(o.isPointLight&&o.visible&&o.intensity>0)active++;});assert.ok(active>0);akit.practical.mode='off';akit.step(0,e,indoorActor,true);floor.traverse(o=>{if(o.isPointLight)assert.equal(o.intensity,0);});
+const s=freshState();s.coins=100000;s.adventure.visited.push('village');s.position={x:14,z:-5.5,region:'village',inside:false};for(const id of ['lantern','tent','oatMilk','veganMeal','autumnDecor','halloweenDecor','christmasDecor']){assert.ok(SHOP.includes(id));assert.ok(trade(s,id,'buy',true).ok);assert.ok(decodeSave(JSON.stringify(s)),'new item saved '+id);}
+s.energy=40;assert.ok(consume(s,'veganMeal').ok);assert.ok(s.energy>40);s.position={x:-5,z:6,region:'alp',inside:false};assert.equal(expeditionAction(s,'pitch',false).ok,false);assert.ok(expeditionAction(s,'pitch',true).ok);assert.ok(decodeSave(JSON.stringify(s)));assert.equal(expeditionAction(s,'fire').ok,false);s.inventory.wood=3;assert.ok(expeditionAction(s,'fire').ok);assert.equal(s.inventory.wood,1);akit.step(0,e,new T.Vector3(-5,0,6),false,s.activities.camp);assert.ok(alp.scene.children.some(o=>o.userData.kind==='portable-mountain-camp'));const before=s.day;assert.ok(expeditionAction(s,'sleep').ok);assert.equal(s.day,before+1);assert.equal(s.environment.minute,480);assert.equal(s.activities.camp.fire,false);s.home.seasonalDecor='autumnDecor';assert.ok(decodeSave(JSON.stringify(s)));alp.room.userData.home.sync(s.home,s.dairy,s.inventory);let shown=0;floor.traverse(o=>{if(o.userData.kind==='owned-seasonal-home-decoration'&&o.visible)shown++;});assert.equal(shown,1);assert.ok(expeditionAction(s,'pack').ok);assert.equal(s.activities.camp,null);assert.ok(decodeSave(JSON.stringify(s)));s.activities.camp={region:'alp',x:0,z:0,fire:true};s.environment.minute=1439.9;stepEnvironment(s,1);assert.equal(s.activities.camp.fire,false);assert.ok(decodeSave(JSON.stringify(s)));s.activities.camp={region:'invalid',x:0,z:0,fire:false};assert.equal(decodeSave(JSON.stringify(s)),null);
+console.log('PASS 4x actual basic/extended crop areas; seven village houses including Dorfhaus; all village interactions reachable; moving articulated villagers; global day/night and dusk fixture activation, window emission and mobile light budget; indoor light off switch; saved purchases/decor, vegan food, validated portable camp/fire/wood/sleep/pack and save migration. Geometry/rules only; no GPU or real device approval.');

@@ -1,0 +1,12 @@
+{
+  "date": "2026-10-18",
+  "method": "AI image generation; runtime crops compressed to WebP",
+  "assets": {
+    "trails": "Four light Swiss alpine ground materials: hiking gravel, woodland roots, farm track, scree. Applied as repeating 3D path textures.",
+    "meadows": "Four Swiss alpine ground variants: lush meadow, autumn meadow, forest floor, summit turf. Applied by region.",
+    "winter": "Swiss alpine snowy panorama; used as distant scenery and a cropped snow surface.",
+    "daniel": "Swiss mountain guide character reference; procedural 3D interpretation.",
+    "hut": "Swiss touring hut exterior reference; constructed 3D hut and accessible interior."
+  },
+  "originals": "Source PNGs retained beside this manifest. Reduced pre-existing runtime textures retained losslessly in retained-originals."
+}

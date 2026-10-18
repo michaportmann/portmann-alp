@@ -1,0 +1,32 @@
+[
+  {
+    "id": "camp-night",
+    "prompt": "Use case: photorealistic-natural. Production background for a premium cozy Swiss alpine 2D first-person marshmallow-roasting minigame. Wide 3:2 master image, central composition also works cropped portrait. Calm clear starry night at a small mountain pond; a modest khaki cotton A-frame tent on the left-middle, Pilatus-like broad dark alpine ridgeline in the distance, soft moonlight and stars. In the LOWER CENTRAL foreground at x50% y72% a small stone fire ring with glowing charcoal and a few low flames, warm firelight on gravel, wood and grass. Empty space directly above the fire for a player's movable roasting stick added by game code. No people, no hands, no roasting stick, no marshmallow, no interface or text. Real photographic tactile detail, subtle illumination, beautiful quiet intimate campsite, not fantasy, not cartoon.",
+    "path": "/workspace/scratch/6150ca3930e0/generated_images/exec-b2cfcbb0-17be-4717-9c19-4d64c0f103be.png"
+  },
+  {
+    "id": "fishing-lake",
+    "prompt": "Use case: photorealistic-natural. Production background for a premium cozy Swiss alpine 2D first-person fishing game. Wide 3:2 master also works center-cropped portrait. View from a small natural pond shore on Portmann Alp in golden early-autumn morning light, turquoise transparent pond occupies lower two thirds, submerged pebbles and darker deeper water, soft distant reflections of broad limestone mountains and gold larches. Bottom foreground side rocks and grass leave open center water. Background includes beautiful broad Swiss limestone ridgeline and forested shoulders, no conical fantasy mountains. Water gently readable for game-rendered bobber and fish overlay. No rod, no fishing line, no fish baked into water, no hands, no UI or text. Photorealistic, peaceful, richly tactile natural materials.",
+    "path": "/workspace/scratch/6150ca3930e0/generated_images/exec-563a1d1e-7608-4bf4-be9e-0fa25da9fed1.png"
+  },
+  {
+    "id": "alpine-path",
+    "prompt": "Use case: photorealistic-natural. Seamless tileable top-down material scan of Swiss alpine hiking path: warm earthy gravel with irregular pale limestone chips and small smooth pebbles of varied sizes, packed soil exposed between clusters, small fine organic fragments. No large boulders, no road lines, no grass borders baked into image, no perspective, no long repeated stripes, no scene. Even diffuse lighting, realistic photographic texture, square edge-to-edge albedo.",
+    "path": "/workspace/scratch/6150ca3930e0/generated_images/exec-8de601a5-bfce-4629-b7a4-d2a05cc779bc.png"
+  },
+  {
+    "id": "forest-floor",
+    "prompt": "Use case: photorealistic-natural. Seamless tileable top-down photographic material scan of Swiss fir forest ground: dark warm earth, fine fallen fir needles and small golden larch needles, modest patchy velvety green moss, a few tiny broken twigs. Natural irregular distribution with no large objects or directional cast shadows. No perspective or scene, square edge-to-edge texture, even diffuse light.",
+    "path": "/workspace/scratch/6150ca3930e0/generated_images/exec-1c1cee80-ad89-448b-b04a-5ad1ed718d7a.png"
+  },
+  {
+    "id": "forest-botany",
+    "prompt": "Use case: photorealistic-natural. Production transparent botanical atlas, 2x2 equal cells separated by transparent gutters. Upper left one complete delicate green alpine fern frond; upper right one irregular deep green leafy bilberry shrub twig without berries; lower left one pale green mountain wood sorrel sprig with three leaves; lower right one low moss cushion seen obliquely with fine visible fibers. Every plant complete, photographic scans soft diffuse light, transparent background, no black rectangles, no soil tiles, no text or labels. Rich genuine natural texture for 3D forest understory cutouts.",
+    "path": "/workspace/scratch/6150ca3930e0/generated_images/exec-b972d0b9-2cdb-4313-8d7b-5e83496e4d05.png"
+  },
+  {
+    "id": "trough-material",
+    "prompt": "Use case: photorealistic-natural. Seamless photographic material scan of a very old Swiss alpine larch wooden fountain trough surface, warm silver-brown weathered wood grain, fine checks, worn rounded fibers, slight dark water staining and subtle moss traces confined to small irregular patches. No object edges, no flowing water or scenery, no text. Square texture evenly diffusely lit, authentic tactile detailed wood, not brick or planks grid.",
+    "path": "/workspace/scratch/6150ca3930e0/generated_images/exec-519d5042-7ea5-40fe-9620-269b0b2a5c98.png"
+  }
+]

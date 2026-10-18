@@ -1,0 +1,29 @@
+{
+  "area": {
+    "x": [
+      -32,
+      32
+    ],
+    "z": [
+      -32,
+      28
+    ],
+    "step": 0.5,
+    "samples": 15609
+  },
+  "before": {
+    "maxBaseGrade": 1.5014529867658932,
+    "samplesOverHalfGrade": 1410
+  },
+  "after": {
+    "maxBaseGrade": 0.7816773346940821,
+    "samplesOverHalfGrade": 516
+  },
+  "meshChecks": {
+    "roadTriangles": 17385,
+    "roadGroundClearance": 0.05,
+    "maximumBuildingFootprintError": 0.000253,
+    "streamFall": 0.035
+  },
+  "method": "Central height differences with 0.02 m total spacing on an equally spaced sample grid. Base earthwork surface, not water bed. Road centroids and independent terrain raycasts checked in tests/terrain-grading.mjs. Diagnostic only; no rendered visual or device acceptance."
+}

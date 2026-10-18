@@ -1,0 +1,51 @@
+import {createDecorModel} from './seasonal-world.mjs';
+import {createTerrainPath} from './terrain-path.mjs';
+import {mergeStaticChildren} from './merge-static.mjs';
+import {createHumanCharacter} from './human-character.mjs';
+import * as T from './vendor/three.module.js';
+import {buildAlpineRoof} from './alpine-roof.mjs';
+import {generatedMap} from './generated-materials.mjs';
+export const VILLAGE_BUILDINGS=[
+ {id:'store',name:'Dorfladen · Lab, Vorräte & Ausrüstung',x:14,z:-9,w:6.4,d:5.4,service:'shop'},
+ {id:'inn',name:'Bergrestaurant',x:23,z:10,w:6.2,d:5.6,yaw:-Math.PI/2},
+ {id:'doctor',name:'Dorfpraxis · Erholung',x:-4,z:-10,w:6,d:5.6,service:'doctor'},
+ {id:'bakery',name:'Bäckerei · Frisches Brot',x:-27,z:7,w:4.5,d:4,heightScale:.72,yaw:Math.PI/2,service:'bakery'},
+ {id:'home-west',name:'Chalet Abendrot',x:-17,z:8,w:4.4,d:4,heightScale:.68,yaw:Math.PI/2},
+ {id:'home-east',name:'Chalet Lärchenblick',x:26,z:-16,w:4.8,d:4.6,heightScale:.78,yaw:-Math.PI/2}
+];
+export function buildVillageUpgrade(scene,height,colliders,interactive,paths,label,animated=[],navigationTargets=[]){
+ const wood=new T.MeshStandardMaterial({color:'#ffffff',map:generatedMap('home-wood-20261018'),roughness:.95}),cream=new T.MeshStandardMaterial({color:'#eee5d1',roughness:.96}),beam=new T.MeshStandardMaterial({color:'#806043',roughness:.9}),roof=new T.MeshStandardMaterial({color:'#797c77',roughness:.95}),stone=new T.MeshStandardMaterial({color:'#aaa99d',roughness:1});
+ const box=(p,w,h,d,m,x,y,z)=>{const o=new T.Mesh(new T.BoxGeometry(w,h,d),m);o.position.set(x,y,z);o.castShadow=o.receiveShadow=true;p.add(o);return o;};
+ for(const [i,b]of VILLAGE_BUILDINGS.entries()){const g=new T.Group();g.position.set(b.x,height(b.x,b.z),b.z);scene.add(g);g.userData.kind='village-crafted-chalet';g.userData.building=b.id;g.rotation.y=b.yaw||0;g.scale.y=b.heightScale||1;const entry={x:b.x+Math.sin(b.yaw||0)*(b.d/2+1),z:b.z+Math.cos(b.yaw||0)*(b.d/2+1)};g.userData.door=entry;if(b.id==='store')g.userData.navigationId='village-fodder';if(b.id==='inn')g.userData.navigationId='village-restaurant';if(g.userData.navigationId)navigationTargets.push(g);
+ box(g,b.w,.55,b.d,stone,0,.27,0);box(g,b.w,2.55,b.d,i%2?cream:wood,0,1.8,0);box(g,b.w,1.3,b.d,wood,0,3.7,0);for(const x of[-b.w/2+.08,b.w/2-.08])box(g,.14,4.2,.15,beam,x,2.1,b.d/2+.03);
+ buildAlpineRoof(g,{roof,beam,timber:wood},{halfWidth:b.w/2+.65,halfDepth:b.d/2+.6,ridge:5.45,eave:4.2,rows:8,columns:10,kind:b.id});
+ const gable=new T.Shape();gable.moveTo(-b.w/2,4.18);gable.lineTo(b.w/2,4.18);for(let j=0;j<=20;j++){const x=b.w/2-j*b.w/20,u=Math.abs(x)/(b.w/2+.65);gable.lineTo(x,5.45-1.25*u-.1*Math.sin(Math.PI*u));}gable.closePath();for(const side of[-1,1]){const face=new T.Mesh(new T.ShapeGeometry(gable),wood);face.position.z=side*(b.d/2+.015);face.rotation.y=side<0?Math.PI:0;face.castShadow=face.receiveShadow=true;g.add(face);}box(g,.55,1.3,.6,stone,b.w*.2,5.25,-.6);box(g,.7,.14,.75,roof,b.w*.2,5.94,-.6);
+ const pane=new T.MeshStandardMaterial({color:'#a8bbc1',emissive:'#ffd396',emissiveIntensity:.05,roughness:.23});pane.userData.nightWindow=true;const shutter=new T.MeshStandardMaterial({color:['#6e806b','#8c4e3c','#6a7f83'][i%3],roughness:.94});
+ for(const y of[1.9,3.65])for(const x of[-b.w*.28,b.w*.28]){box(g,1.02,1.14,.14,beam,x,y,b.d/2+.04);box(g,.86,.98,.06,pane,x,y,b.d/2+.13);box(g,.055,1,.08,cream,x,y,b.d/2+.18);box(g,.89,.045,.08,cream,x,y,b.d/2+.18);for(const side of[-1,1]){box(g,.28,1.18,.08,shutter,x+side*.69,y,b.d/2+.09);for(let j=0;j<5;j++)box(g,.25,.025,.035,beam,x+side*.69,y-.42+j*.2,b.d/2+.14);}if(y>3){box(g,1.2,.23,.35,beam,x,y-.75,b.d/2+.2);}}
+ box(g,1,2.05/(b.heightScale||1),.16,beam,0,1.55/(b.heightScale||1),b.d/2+.11);box(g,.1,.1,.12,cream,.32,1.55/(b.heightScale||1),b.d/2+.24);if(!b.heightScale){box(g,b.w+.25,.16,1.05,wood,0,2.95,b.d/2+.35);for(let j=0;j<15;j++)box(g,.055,.75,.06,beam,-b.w/2+j*b.w/14,3.4,b.d/2+.81);box(g,b.w+.1,.08,.09,beam,0,3.8,b.d/2+.81);}
+ const turned=Math.abs(Math.sin(b.yaw||0))>.5;colliders.push({x:b.x,z:b.z,w:(turned?b.d:b.w)+.15,d:(turned?b.w:b.d)+.15});const plaque=label(b.service==='shop'?'DORFLADEN':b.id==='inn'?'Bergrestaurant':b.name,0,2.7,b.d/2+.24,Math.min(4.3,b.w-.3),g);plaque.userData.kind='single-village-facade-sign';for(let step=0;step<2;step++)box(g,1.6,.14*(step+1),.45,stone,0,.07*(step+1),b.d/2+.7-step*.35);mergeStaticChildren(g);if(b.service&&b.service!=='shop')interactive.push({id:'village-'+b.service,name:b.name,...entry,range:2.3,villageService:b.service});
+ const target=b.x<0?[-8,12]:[12,4],points=[target,[entry.x,entry.z]],width=1.5;paths.push({points,width});scene.add(createTerrainPath(points,width,height,'#c1b298',{surface:'swiss-paving-20261018'}));
+
+ }
+ for(const [i,x,z,jacket]of [[0,-5.25,-6.2,'#e9e8df'],[1,-24.5,8.5,'#ece0c9']]){const p=createHumanCharacter(i?'grandfather':'woman',{hat:false,backpack:false,pattern:null,jacket,glasses:false,scale:.94,hair:i?'#6f6251':'#483b32'});p.g.position.set(x,height(x,z),z);p.g.userData.kind=i?'village-baker':'village-doctor';scene.add(p.g);animated.push(t=>p.animate({time:t,interacting:true}));}
+ // Market: open timber counter, four generated seasonal display panels.
+ const m=new T.Group();m.position.set(10,height(10,10),10);scene.add(m);m.userData.kind='seasonal-village-market';m.userData.navigationId='village-market';navigationTargets.push(m);const pumpkins=createDecorModel('halloweenDecor');pumpkins.scale.setScalar(.75);pumpkins.position.set(2.1,0,.7);m.add(pumpkins);box(m,4,.95,1.5,wood,0,.48,0);for(const x of[-1.9,1.9])box(m,.1,2.6,.1,beam,x,1.3,-.6);const awning=box(m,4.5,.12,2.2,roof,0,2.7,0);awning.rotation.x=-.12;
+ for(let i=0;i<4;i++){const map=generatedMap('market-goods-20261018',i);const o=box(m,.9,.64,.04,new T.MeshStandardMaterial({color:'#ffffff',map,roughness:.92}),-1.45+i*.97,.59,.77);o.userData.kind='generated-market-goods';}
+ for(let i=0;i<18;i++){const fruit=new T.Mesh(new T.SphereGeometry(.12,10,7),new T.MeshStandardMaterial({color:i<6?'#b65b32':i<12?'#9c3d32':'#c6ae62',roughness:.85}));fruit.position.set(-1.5+(i%6)*.6,1.05+Math.floor(i/6)*.035,-.3+Math.floor(i/6)*.3);m.add(fruit);}
+ colliders.push({x:10,z:10,w:4.2,d:1.7});interactive.push({id:'village-market',name:'Markt · Saisonales & vegane Vorräte',x:10,z:12,range:2.3,villageService:'market'});label('Dorfmarkt · Saison & Genuss',10,m.position.y+2.35,11,4);buildVillageGarden(scene,height,colliders,interactive,animated,navigationTargets);
+}
+
+function buildVillageGarden(scene,height,colliders,interactive,animated,targets){
+ const mat=(color,e={})=>new T.MeshStandardMaterial({color,roughness:.95,...e}),stone=mat('#b8b6a4',{map:generatedMap('swiss-limestone-20261018')}),water=mat('#7fbbb4',{transparent:true,opacity:.88,roughness:.17,metalness:.2}),wood=mat('#89704e');
+ const fountain=new T.Group();fountain.position.set(3,height(3,6),6);fountain.userData.kind='swiss-village-fountain';fountain.userData.navigationId='village-fountain';scene.add(fountain);targets.push(fountain);const add=(g,m,x,y,z,p=fountain)=>{const o=new T.Mesh(g,m);o.position.set(x,y,z);o.castShadow=o.receiveShadow=true;p.add(o);return o;};
+ add(new T.CylinderGeometry(1.8,1.95,.16,32),stone,0,.08,0);for(let i=0;i<18;i++){const a=i*Math.PI/9,b=add(new T.BoxGeometry(.53,.56,.26),stone,Math.sin(a)*1.48,.4,Math.cos(a)*1.48);b.rotation.y=a;}
+ add(new T.CylinderGeometry(.24,.32,2.35,12),stone,0,1.2,0);add(new T.SphereGeometry(.28,16,12),stone,0,2.48,0);add(new T.CylinderGeometry(.06,.06,.78,8),wood,.38,1.65,0).rotation.z=Math.PI/2;const stream=add(new T.CylinderGeometry(.027,.034,.99,7),water,.76,1.08,0);const surface=add(new T.CircleGeometry(1.33,40),water,0,.61,0);surface.rotation.x=-Math.PI/2;const rings=[];for(let i=0;i<3;i++){const r=add(new T.RingGeometry(.13,.16,32),mat('#c3e3d6',{transparent:true,opacity:.4,side:T.DoubleSide}),.76,.62,0);r.rotation.x=-Math.PI/2;rings.push(r);}animated.push(t=>{stream.scale.x=.9+Math.sin(t*13)*.1;rings.forEach((r,i)=>{const s=(t*.6+i/3)%1;r.scale.setScalar(.2+s*3);r.material.opacity=(1-s)*.4;});});colliders.push({type:'circle',x:3,z:6,r:1.75});interactive.push({id:'village-fountain',name:'Dorfbrunnen · Quellwasser schöpfen',x:3,z:8.4,range:1.8,villageFountain:true});
+ const bushes=[[],[],[],[]],flowers=[],pose=new T.Object3D();let seed=729;const rnd=()=>{seed=(Math.imul(seed,1664525)+1013904223)>>>0;return seed/4294967296;};
+ for(const[cx,cz,rx,rz]of [[-12,1,2.2,2],[-8,10,2,1.7],[7,15,2.5,1.7],[18,-1,2.2,3],[-25,17,3,2.5],[23,21,2.5,1.7],[8,-16,2.5,2],[-29,-4,2.5,4]]){
+  const plot=add(new T.CircleGeometry(1,24),mat('#798b55'),cx,height(cx,cz)+.025,cz,scene);plot.rotation.x=-Math.PI/2;plot.scale.set(rx,rz,1);plot.userData.kind='village-planted-island';
+  for(let i=0;i<10;i++){const a=i*2.399,r=Math.sqrt(rnd()),x=cx+Math.sin(a)*rx*r,z=cz+Math.cos(a)*rz*r;if(interactive.some(n=>Math.hypot(x-n.x,z-n.z)<1.6))continue;pose.position.set(x,height(x,z)+.45,z);pose.rotation.set(0,rnd()*6,0);pose.scale.set(.7+rnd()*.5,.65+rnd()*.6,1);pose.updateMatrix();bushes[i%4].push(pose.matrix.clone());}
+  for(let i=0;i<28;i++){const a=rnd()*6.28,x=cx+Math.sin(a)*rx*rnd(),z=cz+Math.cos(a)*rz*rnd();pose.position.set(x,height(x,z)+.22,z);pose.rotation.set(0,a,0);pose.scale.setScalar(.35+rnd()*.25);pose.updateMatrix();flowers.push(pose.matrix.clone());}
+ }
+ bushes.forEach((ms,i)=>{const g=new T.InstancedMesh(new T.PlaneGeometry(1.5,1.2),mat('#ffffff',{map:generatedMap('alpine-bush-atlas',i),alphaTest:.45,side:T.DoubleSide}),ms.length*2);const turn=new T.Matrix4().makeRotationY(Math.PI/2);ms.forEach((m,k)=>{g.setMatrixAt(k*2,m);g.setMatrixAt(k*2+1,m.clone().multiply(turn));});g.userData.kind='village-botanical-shrubs';g.receiveShadow=true;scene.add(g);});const blooms=new T.InstancedMesh(new T.PlaneGeometry(1,1),mat('#ffffff',{map:generatedMap('alpine-flowers',0),alphaTest:.5,side:T.DoubleSide}),flowers.length);flowers.forEach((m,i)=>blooms.setMatrixAt(i,m));blooms.userData.kind='village-garden-flowers';scene.add(blooms);
+ for(const[cx,cz]of [[-2,11],[7,5]]){const g=new T.Group();g.position.set(cx,height(cx,cz),cz);scene.add(g);for(const x of[-1,1])add(new T.BoxGeometry(.12,.7,.12),wood,x,.35,0,g);add(new T.BoxGeometry(2.5,.15,.55),wood,0,.75,0,g);add(new T.BoxGeometry(2.5,.5,.1),wood,0,1.05,-.25,g);colliders.push({x:cx,z:cz,w:2.5,d:.7});}
+}

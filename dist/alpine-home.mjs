@@ -1,0 +1,74 @@
+import {createDecorModel} from './seasonal-world.mjs';
+import {generatedMap} from './generated-materials.mjs';
+import {SWISS_PEAKS} from './swiss-peaks.mjs';
+import * as T from './vendor/three.module.js';
+import {HOME_FLOORS,HOME_NAMES,HOME_FURNITURE,furniturePose} from './home-layout.mjs';
+export function createAlpineHome(scene,animated,sourceM,label){
+ const M={...sourceM};for(const [id,name]of Object.entries({timber:'wood',cream:'plaster',stone:'stone',cloth:'cloth'})){M[id]=sourceM[id].clone();const map=generatedMap('home-'+name+'-20261018');if(map){M[id].map=map;M[id].color.set('#ffffff');M[id].bumpMap=null;M[id].normalMap=null;M[id].roughnessMap=null;M[id].onBeforeCompile=()=>{};M[id].customProgramCacheKey=()=>'home-generated-'+name;}}
+ const root=new T.Group();root.position.x=110;root.userData.kind='alpine-stube';root.userData.details=['natural-stone-hearth','animated-flames','wall-timber-beams','corner-bench','checked-textiles','fondue-table','crockery','three-walkable-storeys','lambskins','pierced-windows'];scene.add(root);
+ const floors=new Map(),furniture=new Map(),targets=[],grounds=[];const mat=(color,extra={})=>new T.MeshStandardMaterial({color,roughness:.85,...extra}),wool=mat('#e7dbc1'),linen=mat('#f2e7cf'),red=mat('#923f32'),iron=mat('#373936');
+ function mesh(geo,m,p){const o=new T.Mesh(geo,m);o.castShadow=o.receiveShadow=true;p.add(o);return o;}
+ const boxGeometries=new Map();function softened(w,h,d){const key=[w,h,d].join(':');if(boxGeometries.has(key))return boxGeometries.get(key);const r=Math.min(.025,w*.09,h*.09,d*.09),shape=new T.Shape();shape.moveTo(-w/2+r,-h/2);shape.lineTo(w/2-r,-h/2);shape.quadraticCurveTo(w/2,-h/2,w/2,-h/2+r);shape.lineTo(w/2,h/2-r);shape.quadraticCurveTo(w/2,h/2,w/2-r,h/2);shape.lineTo(-w/2+r,h/2);shape.quadraticCurveTo(-w/2,h/2,-w/2,h/2-r);shape.lineTo(-w/2,-h/2+r);shape.quadraticCurveTo(-w/2,-h/2,-w/2+r,-h/2);const g=new T.ExtrudeGeometry(shape,{depth:d,bevelEnabled:true,bevelSize:r/2,bevelThickness:r/2,bevelSegments:2,curveSegments:3,steps:1});g.translate(0,0,-d/2);boxGeometries.set(key,g);return g;}
+ function box(w,h,d,m,x,y,z,p){const o=mesh(w>6?new T.BoxGeometry(w,h,d):softened(w,h,d),m,p);o.position.set(x,y,z);return o;}
+ function cyl(r,h,m,x,y,z,p){const o=mesh(new T.CylinderGeometry(r,r,h,24),m,p);o.position.set(x,y,z);return o;}
+ function ball(x,y,z,s,m,p,scale=[1,1,1]){const o=mesh(new T.SphereGeometry(s,16,12),m,p);o.position.set(x,y,z);o.scale.set(...scale);return o;}
+ function legs(p,w,d,h){for(const x of[-w/2+.12,w/2-.12])for(const z of[-d/2+.12,d/2-.12])box(.1,h,.1,M.beam,x,h/2,z,p);}
+ function skin(p,x,z,angle=0){const g=new T.Group();g.position.set(x,.72,z);g.rotation.y=angle;p.add(g);g.userData.kind='lambskin';const tufts=new T.InstancedMesh(new T.SphereGeometry(1,6,5),wool,170),pose=new T.Object3D();for(let i=0;i<170;i++){const a=i*2.399,r=Math.sqrt((i+.5)/170);pose.position.set(Math.cos(a)*r*.44,.025+Math.sin(i*7)*.012,Math.sin(a)*r*.29);pose.scale.set(.065,.035,.055);pose.updateMatrix();tufts.setMatrixAt(i,pose.matrix);}g.add(tufts);}
+ function window(p,x){const z=-4.45,y=2.25; // Genuine aperture, with recessed mullions and two checked curtains.
+  for(const sx of[-1,1])box(.12,1.95,.24,M.timber,x+sx*1.05,y,z,p);for(const sy of[-1,1])box(2.2,.12,.28,M.timber,x,y+sy*.96,z,p);
+  box(2,1.8,.025,mat('#b4d6df',{transparent:true,opacity:.3,roughness:.16,depthWrite:false}),x,y,z-.04,p);box(.065,1.85,.09,linen,x,y,z+.04,p);box(2,.06,.09,linen,x,y,z+.04,p);box(2.4,.1,.45,M.timber,x,y-1.02,z+.12,p);
+  for(const side of[-1,1])for(let j=0;j<5;j++){const o=box(.11,2,.13,M.cloth,x+side*(1.19+j*.08),y-.02,z+.18+Math.sin(j*2)*.045,p);o.rotation.z=side*.025;}
+ }
+ function action(p,id,text,x,z){const g=new T.Group();g.position.set(x,0,z);g.userData.homeAction=id;p.add(g);targets.push(g);const plaque=label(text,0,1.15,.05,1.2,g);plaque.userData.homeAction=id;return g;}
+ for(const [i,id]of HOME_FLOORS.entries()){
+  const p=new T.Group();p.position.y=(i-HOME_FLOORS.indexOf('stube'))*4.6;root.add(p);floors.set(id,p);p.userData.floor=id;
+  if(id==='cave'){
+   const floor=box(11,.2,9,M.stone,0,-.1,0,p);floor.userData.kind='home-floor';grounds.push(floor);p.userData.kind='cheese-cave';
+   box(11,3.6,.4,M.stone,0,1.8,-4.55,p);box(.35,3.6,9,M.stone,-5.5,1.8,0,p);
+   for(let j=0;j<24;j++){const x=-5.2+j%12*.94,y=2.9+Math.floor(j/12)*.45,o=mesh(new T.IcosahedronGeometry(.65,2),M.stone,p);o.position.set(x,y,-4.1);o.scale.set(.9,.65,.55);}
+   for(const x of[-3.7,3.7])box(.12,2.5,.8,M.beam,x,1.25,-3.6,p);for(const y of[.4,1.2,2])box(7.6,.1,.8,M.timber,0,y,-3.6,p);
+   action(p,'ripen','Laibe pflegen',0,-2.5);action(p,'stairs','Treppe hinauf',4.25,2.5);
+   const light=new T.PointLight('#ffd498',2.8,16);light.position.set(2,2.6,1);p.add(light);label('Portmann · Höhlenreifung',0,2.9,-4.2,3.6,p);continue;
+  }
+  const floor=box(11,.2,9,id==='cellar'?M.stone:M.timber,0,-.1,0,p);floor.userData.kind=id==='stube'?'stube-floorboards':'home-floor';grounds.push(floor);if(id!=='cellar'){const boards=new T.InstancedMesh(softened(.48,.025,8.85),M.timber,22),pose=new T.Object3D();for(let j=0;j<22;j++){pose.position.set(-5.24+j*.5,.02,0);pose.updateMatrix();boards.setMatrixAt(j,pose.matrix);boards.setColorAt(j,new T.Color().setRGB(.85+(j%5)*.035,.85+(j%5)*.031,.82+(j%5)*.031));}boards.receiveShadow=true;p.add(boards);}
+  // Open front/right cutaway: all load-bearing timber stays against walls.
+  box(.15,3.55,9,M.timber,-5.5,1.77,0,p);box(11,1.2,.18,id==='cellar'?M.stone:M.timber,0,.6,-4.55,p);box(11,.4,.18,M.cream,0,3.35,-4.55,p);
+  for(const [x,w]of[[-4.8,1.4],[0,3.2],[4.8,1.4]])box(w,1.75,.18,M.cream,x,2.075,-4.55,p);
+  window(p,-3.05);window(p,3.05);const backdrop=new T.Group();backdrop.position.z=-5;p.add(backdrop);backdrop.userData.kind='window-alpine-view';const viewMap=generatedMap('swiss-ridge-20261018');box(15,6,.05,new T.MeshBasicMaterial({color:viewMap?'#ffffff':'#bcdbe6',map:viewMap,userData:{nightBackdrop:true}}),0,2,-.3,backdrop);for(let j=0;j<(viewMap?0:3);j++){const profile=SWISS_PEAKS[j].profile,shape=new T.Shape();shape.moveTo(-7,-1);for(const [x,y]of profile)shape.lineTo(x*6,1+y*.5+j*.2);shape.lineTo(7,-1);shape.closePath();const ridge=mesh(new T.ShapeGeometry(shape),new T.MeshBasicMaterial({color:['#8b9f9e','#aab4ad','#c9c9b5'][j],side:T.DoubleSide}),backdrop);ridge.position.set(j*2-2,0,-.1+j*.025);} for(const x of[-5.35,0,5.35])box(.15,3.5,.22,M.beam,x,1.75,-4.38,p);box(10.8,.16,.22,M.beam,0,3.45,-4.38,p);
+  // A short visible stair flight and clear landing on the right, kept free of furniture.
+  for(let j=0;j<7;j++)box(1,.11+j*.13,.28,M.timber,4.6,(.11+j*.13)/2,-.1-j*.28,p);
+  for(const x of[4.02,5.18])box(.08,1.2,.08,M.beam,x,1.1,-1.65,p);
+  action(p,'stairs','Treppe',4.25,2.5);if(id==='cellar'){const door=action(p,'cave','Höhlenkeller ↓',-4,1);for(const x of[-4.65,-3.35])box(.22,2.4,.2,M.stone,x,1.2,.8,p);for(let j=0;j<9;j++){const a=j*Math.PI/8;const stone=mesh(new T.IcosahedronGeometry(.2,1),M.stone,p);stone.position.set(-4+Math.cos(a)*.65,2.35+Math.sin(a)*.5,.8);}door.userData.kind='cheese-cave-entrance';}if(id==='stube')action(p,'exit','Nach draussen',0,4);
+  const light=new T.PointLight('#ffcf8b',2.4,15);light.position.set(-1,3.15,.3);p.add(light);const lamp=cyl(.28,.16,M.copper,-1,3.12,.3,p);lamp.userData.kind='pendant-lamp';
+  label(id==='cellar'?'Chäs & Handwerk':id==='bedroom'?'Guet Nacht':'Willkomme dihei',0,2.8,-4.38,2.1,p);
+ }
+ for(const [id,v]of Object.entries(HOME_FURNITURE)){const g=new T.Group();g.userData.furniture=id;g.userData.name=v.name;floors.get(v.floor).add(g);furniture.set(id,g);targets.push(g);
+  if(id==='table'){legs(g,2.5,1.45,.85);box(2.5,.13,1.45,M.timber,0,.91,0,g);box(2.05,.02,1.2,M.cloth,0,.99,0,g);cyl(.26,.18,red,0,1.1,0,g);cyl(.23,.015,mat('#e4cb8c'),0,1.2,0,g);for(const x of[-.75,.75])cyl(.2,.025,linen,x,1.02,0,g);}
+  else if(id==='bench'){legs(g,3.1,1.1,.55);box(3.1,.14,.85,M.timber,0,.62,0,g);box(3.1,.72,.12,M.timber,0,1,-.48,g);box(.7,.14,1.1,M.timber,-1.2,.62,0,g);box(.12,.72,1.1,M.timber,-1.5,1,0,g);for(const x of[-.85,0,.85]){skin(g,x,0);const cushion=ball(x,1.04,-.33,.31,M.cloth,g,[1,.8,.28]);cushion.userData.kind='checked-bench-cushion';}skin(g,-1.2,.25,Math.PI/2);}
+  else if(id==='chair'){legs(g,.7,.7,.55);box(.7,.12,.7,M.timber,0,.59,0,g);box(.7,.65,.1,M.timber,0,.96,.31,g);}
+  else if(id==='chest'){box(1.9,.75,.85,M.timber,0,.4,0,g);box(2,.1,.95,M.beam,0,.84,0,g);for(const x of[-.6,.6]){const heart=new T.Shape();heart.moveTo(0,0);heart.bezierCurveTo(-.3,.2,-.25,.4,0,.22);heart.bezierCurveTo(.25,.4,.3,.2,0,0);const o=mesh(new T.ShapeGeometry(heart),M.copper,g);o.position.set(x,.3,.431);}g.userData.homeAction='storage';}
+  else if(id==='bed'){legs(g,2.35,3.15,.4);box(2.35,.25,3.15,M.timber,0,.44,0,g);box(2.24,.23,3,linen,0,.67,0,g);box(2.24,.04,2.05,M.cloth,0,.81,.45,g);box(2.4,1,.13,M.timber,0,.95,-1.54,g);for(const x of[-.56,.56])ball(x,.85,-1,.45,linen,g,[1,.23,.7]);const head=new T.Shape();head.moveTo(-1.2,.9);head.quadraticCurveTo(-1.15,1.65,0,1.48);head.quadraticCurveTo(1.15,1.65,1.2,.9);head.lineTo(-1.2,.9);const panel=mesh(new T.ExtrudeGeometry(head,{depth:.09,bevelEnabled:true,bevelSize:.025,bevelThickness:.025,steps:1}),M.timber,g);panel.position.z=-1.59;panel.userData.kind='carved-pine-bedhead';box(2.1,.045,.6,wool,0,.86,1.1,g);g.userData.homeAction='sleep';}
+  else if(id==='wardrobe'){box(2,2.55,.75,M.timber,0,1.3,0,g);for(const x of[-.5,.5]){box(.89,2.25,.04,M.beam,x,1.3,.39,g);box(.79,2.12,.045,M.timber,x,1.3,.42,g);ball(x*.2,1.23,.48,.04,M.copper,g);}box(2.15,.14,.85,M.beam,0,2.63,0,g);}
+  else if(id==='bedside'){box(.65,.7,.65,M.timber,0,.35,0,g);cyl(.1,.3,M.copper,0,.88,0,g);mesh(new T.ConeGeometry(.2,.25,24),linen,g).position.set(0,1.13,0);}
+  else if(id==='desk'||id==='cheeseTable'){legs(g,v.w,v.d,.85);box(v.w,.14,v.d,M.timber,0,.92,0,g);if(id==='cheeseTable'){for(const x of[-.8,0,.8])cyl(.25,.16,mat('#d8b45e'),x,1.08,0,g);g.userData.homeAction='craft';}else{box(.45,.04,.35,linen,0,1.02,0,g);cyl(.1,.25,M.copper,.55,1.13,0,g);}}
+  else if(id==='cheeseRack'){for(const x of[-1.5,1.5])box(.1,2.8,.65,M.beam,x,1.4,0,g);for(let j=0;j<4;j++){box(3.2,.09,.7,M.timber,0,.4+j*.65,0,g);for(const x of[-1,-.35,.35,1])cyl(.25,.16,mat('#dbbc72'),x,.53+j*.65,0,g);}}
+  else if(id==='barrel'){cyl(.44,1.05,M.timber,0,.54,0,g);for(const y of[.2,.85])cyl(.45,.07,iron,0,y,0,g);}
+ }
+ const stube=floors.get('stube');box(2,2.5,1.45,M.stone,3.5,1.25,-3.5,stube);box(1.45,1.2,.06,iron,3.5,.75,-2.75,stube);box(2.2,.18,1.6,M.timber,3.5,1.65,-3.5,stube);const glow=mat('#f7b652',{emissive:'#e98426',emissiveIntensity:1.5,transparent:true,opacity:.8});const flames=[];for(let i=0;i<4;i++){const o=mesh(new T.SphereGeometry(1,12,8),glow,stube);o.position.set(3.05+i*.29,.5,-2.68);o.scale.set(.13,.25,.08);flames.push(o);}const fireLight=new T.PointLight('#ffb65a',3.5,7);fireLight.position.set(3.5,1,-2.5);stube.add(fireLight);animated.push(t=>{flames.forEach((o,i)=>o.scale.y=.22+Math.sin(t*6+i)*.07);fireLight.intensity=3.5+Math.sin(t*6)*.2;});
+ // Swiss chalet details: framed Scherenschnitt, bell, flower pot and red wool runner.
+ const art=label('PORTMANN · ALP',-5.38,2.3,.4,1.7,stube);art.rotation.y=Math.PI/2;box(2.6,.025,1.5,M.cloth,-1.5,.025,1.9,stube);
+ const bell=mesh(new T.ConeGeometry(.18,.26,24,1,true),M.copper,stube);bell.position.set(-.75,2.3,-4.25);cyl(.03,.25,M.beam,-.75,2.55,-4.25,stube);
+ for(const x of[-3.05,3.05]){cyl(.12,.2,M.copper,x,1.36,-4.15,stube);for(let j=0;j<5;j++){cyl(.012,.32,M.shutter,x+Math.sin(j)*.09,1.6,-4.15+Math.cos(j)*.07,stube);ball(x+Math.sin(j)*.09,1.79,-4.15+Math.cos(j)*.07,.055,linen,stube);}}
+ const cellar=floors.get('cellar');const cauldron=mesh(new T.LatheGeometry([[0,0],[.25,0],[.6,.15],[.7,.6],[.65,.7]].map(p=>new T.Vector2(...p)),32),M.copper,cellar);cauldron.position.set(3.1,.5,-2.2);cyl(.62,.07,mat('#f1e2af'),3.1,1.15,-2.2,cellar);for(const x of[2.6,3.6])box(.12,.5,.13,iron,x,.25,-2.2,cellar);cauldron.userData.homeAction='craft';targets.push(cauldron);label('Chäs-Chessi',3.1,1.8,-3.15,1.7,cellar);
+ // Warm wall lanterns, practical cheesemaking utensils and carved bedroom details.
+ for(const [floor,point]of [['stube',[-4.9,2.2,-3.85]],['bedroom',[-4.9,2.2,-3.85]],['cellar',[-1,2.4,-4.15]],['cave',[-3.7,2.4,-4.05]],['cave',[3.7,2.4,-4.05]]]){const p=floors.get(floor),g=new T.Group();g.position.set(...point);p.add(g);g.userData.kind='warm-brass-wall-lantern';box(.18,.28,.2,M.copper,0,0,0,g);box(.11,.2,.13,mat('#ffe8b6',{emissive:'#ffc970',emissiveIntensity:.6}),0,0,.06,g);const glow=new T.PointLight('#ffd89a',1.1,5);glow.position.z=.25;g.add(glow);}
+ const room=floors.get('bedroom');box(2.5,.025,1.8,M.cloth,0,.025,1.6,room);
+ const cave=floors.get('cave');for(let i=0;i<13;i++){const angle=i*Math.PI/12,stone=mesh(new T.IcosahedronGeometry(.48,2),M.stone,cave);stone.position.set(Math.cos(angle)*4.5,1.9+Math.sin(angle)*1.65,-4.1);stone.scale.set(1,.8,.65);stone.userData.kind='cellar-limestone-arch';}
+ for(const x of[-1.8,-.9,0]){const utensil=mesh(new T.TorusGeometry(.17,.025,8,24),M.copper,cellar);utensil.position.set(x,2.1,-4.32);cyl(.025,.4,M.beam,x,2.4,-4.32,cellar);}box(2.6,.1,.45,M.timber,0,1.82,-4.05,cellar);for(const x of[-.8,0,.8]){const mold=cyl(.19,.18,linen,x,1.96,-4.02,cellar);mold.userData.kind='ceramic-cheese-mould';}
+ root.userData.details.push('generated-larch-plaster-limestone-gingham','carved-pine-bedhead','checked-bench-cushions','warm-brass-wall-lantern','cellar-limestone-arch');
+ const ripeningWheels=[];for(let i=0;i<12;i++){const wheel=cyl(.32,.18,mat('#ceac63'),-2.8+(i%4)*1.85,.54+Math.floor(i/4)*.8,-3.6,floors.get('cave'));wheel.userData.kind='ripening-cheese-wheel';wheel.visible=false;ripeningWheels.push(wheel);}const caveRack=floors.get('cave');caveRack.userData.homeAction='ripen';
+ const seasonal=new Map();for(const id of ['autumnDecor','halloweenDecor','christmasDecor','christmasTree']){const g=createDecorModel(id);g.userData.kind='owned-seasonal-home-decoration';g.userData.item=id;stube.add(g);if(id==='christmasTree'){g.scale.setScalar(.6);g.position.set(4.3,0,-.3);}else{g.scale.setScalar(.4);g.position.set(-1.7,1.7,-4.0);box(1.5,.08,.6,M.timber,-1.3,1.65,-4.05,stube);}g.visible=false;seasonal.set(id,g);}
+
+ function sync(home,dairy,inventory={}){for(const[id,g]of seasonal)g.visible=home.seasonalDecor===id&&!!inventory[id];ripeningWheels.forEach((o,i)=>o.visible=i<(dairy?.batches.length||0));for(const[id,p]of floors)p.visible=id===home.floor;for(const[id,g]of furniture){const p=furniturePose(home,id);g.position.set(p.x,0,p.z);g.rotation.y=p.turn*Math.PI/2;}root.userData.activeFloor=home.floor;}
+ root.userData.home={floors,furniture,targets,grounds,sync,origin:110,floorY:id=>(HOME_FLOORS.indexOf(id)-HOME_FLOORS.indexOf('stube'))*4.6};sync({floor:'stube',placements:{}});return root;
+}

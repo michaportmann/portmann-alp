@@ -1,0 +1,17 @@
+import assert from 'node:assert/strict';
+import {createRequire} from 'node:module';
+import {createWorld} from '../dist/world.mjs';
+import {BACKLAND as B} from '../dist/alp-landscape-plan.mjs';
+import {height,route,blocked} from '../dist/logic.mjs';
+import {CLIMBS} from '../dist/climbing.mjs';
+import {freshState,decodeSave} from '../dist/save.mjs';
+import {restByStream} from '../dist/estate.mjs';
+const require=createRequire(import.meta.url),{createCanvas}=require('@napi-rs/canvas');globalThis.document={createElement:()=>createCanvas(256,256)};
+const w=createWorld();assert.ok(!w.interactive.some(p=>p.climbRoute));assert.equal(w.climbKit.sites.size,0);assert.equal(CLIMBS.training.region,'panorama');
+assert.ok(B.stream.z< -15);assert.ok(w.homeKit.stream.geometry.attributes.position.array.every(Number.isFinite));
+for(const p of [...B.uphill,...B.downhill])assert.ok(route({x:-5,z:6},{x:p[0],z:p[1]},w.colliders).length,'trail waypoint accessible '+p);
+assert.ok(height(-17,-28)>height(-16,-8)+1,'walkable uphill shoulder behind hut');assert.ok(height(-6,25)<height(-5,6)-5,'real descending village approach in front');assert.ok(height(-5,62)<height(-6,25)-4,'visible village trail continues below the farm');
+assert.deepEqual(route({x:NaN,z:0},{x:0,z:1},w.colliders),[]);assert.deepEqual(route({x:0,z:0},{x:undefined,z:1},w.colliders),[]);
+const state=freshState();state.position={...B.camp.entry,region:'alp',inside:false};state.energy=20;assert.ok(restByStream(state).ok);state.position={x:8,z:15,region:'alp',inside:false};assert.equal(restByStream(state).ok,false,'old front camp cannot trigger rest');
+const legacy=freshState();legacy.position={x:-6,z:-9.5,region:'alp',inside:false};legacy.climbing.checkpoint={route:'training',node:3,time:12,faults:1};legacy.coins=42123;const migrated=decodeSave(JSON.stringify(legacy));assert.ok(migrated);assert.equal(migrated.position.region,'panorama');assert.equal(migrated.climbing.checkpoint.node,3);assert.equal(migrated.coins,42123);assert.ok(migrated.adventure.visited.includes('panorama'));
+console.log('PASS farm landscape layout: no farm climbing wall, training session migration, rear stream/camp and accessible uphill route, more than 5m descent toward village and continued lower trail, invalid-route guard, relocated rest location. Rendered look remains unverified.');

@@ -1,0 +1,6 @@
+# Alpradio
+Summer Walk remains the initial main track; the last selected track is saved.
+User-supplied additions: Donut, Store, Afternoon — Lukrembo; Backyard, Driving On Country Roads — Dagored; drizzle — massobeats; Midnight Bliss — Moavii; Married Life — Aylex (files labelled freetouse.com). Folk — the_mountain. Acoustic Folk — kulakovka (duplicate upload not added twice). Steps — freesound_community (environmental effect, not a song). Existing music attribution remains in project credits.
+Web copies: mono Opus 24kbps for compact delivery; Summer Walk retains its existing MP3. Ogg playback requires a modern browser (Safari 18.4+, current Chrome/Firefox). Originals remain in the supplied uploads.
+
+18 October update: Acoustic Folk rebuilt from the supplied original MP3 as stereo Opus 48 kb/s CBR (previous runtime: mono 24 kb/s). Peak ceiling -1 dBFS and short edge fades. Summer Walk remains the first main title, full duration, delivered as stereo Opus 48 kb/s CBR to keep the enlarged game bundle within its delivery limit; previous MP3 retained under docs/materials/retained-originals. Other songs preserved. Repeated play() calls while music is already playing are avoided. No iPhone listening approval claimed.

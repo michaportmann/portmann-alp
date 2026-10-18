@@ -1,0 +1,14 @@
+import {VILLAGERS,ORDERS,talk,nearVillager,orderStatus,acceptOrder,finishOrder} from './village.mjs';
+import {exchangeInventory,itemName,money} from './progression.mjs';
+import {LANDMARKS} from './regions.mjs';
+import {CLIMBS} from './climbing.mjs';
+const labels={locked:'NOCH GESPERRT',available:'VERFÜGBAR',active:'ANGENOMMEN',ready:'BEREIT ZUR ÜBERGABE',completed:'ABGESCHLOSSEN'};
+export function orderCards(s,npc=null){return ORDERS.filter(o=>!npc||o.npc===npc).map(o=>{const st=orderStatus(s,o.id),near=nearVillager(s,o.npc),needs=st.missing.map(m=>m.item?m.amount+' × '+itemName(m.item):m.discovery?'Entdeckung: '+Object.values(LANDMARKS).find(l=>l.id===m.discovery)?.title:'Kletterroute: '+CLIMBS[m.climb].name);return'<article class="item-card"><span class="eyebrow">'+labels[st.phase]+'</span><h3>'+o.name+'</h3><p>'+o.text+'</p><small>'+VILLAGERS[o.npc].name+' · '+VILLAGERS[o.npc].role+' · Bergdorf</small><p>Belohnung: '+money(o.reward)+'</p>'+(st.phase==='locked'?'<p>Zuerst abschliessen: '+o.requires.map(k=>ORDERS.find(a=>a.id===k).name).join(', ')+'.</p>':st.phase==='active'?'<p class="missing">Noch nötig: '+needs.join(', ')+'.</p>':st.phase==='ready'?'<p>Alles bereit. Kehre zur Auftragsperson zurück.</p>':'')+(npc&&['available','active','ready'].includes(st.phase)?'<button data-order="'+o.id+'" '+(!near||st.phase==='active'?'disabled':'')+'>'+(st.phase==='available'?'Auftrag annehmen':Object.keys(o.take).length?'Waren übergeben & Belohnung erhalten':'Bericht erstatten & Belohnung erhalten')+'</button>':'')+'</article>';}).join('');}
+export function createVillagePanels({getState,capture,show,changed}){
+ function conversation(id,m){capture();const s=getState(),n=VILLAGERS[id];if(!n)return;if(m===undefined){const r=talk(s,id);if(!r.ok){show('<h2>'+n.name+'</h2><p>'+r.message+'</p>');return;}m=r.message;changed();}
+ show('<span class="eyebrow">BERGDORF · '+n.role.toUpperCase()+'</span><h2>'+n.name+'</h2><p class="dialogue-quote" role="status">'+m+'</p><div class="actions">'+Object.entries(n.topics).map(([key,v])=>'<button data-topic="'+key+'">'+v[0]+(s.village.topics.includes(id+':'+key)?' · ✓':'')+'</button>').join('')+'</div><h3>Aufträge mit '+n.name+'</h3><div class="item-grid">'+orderCards(s,id)+'</div><small>Angenommene Aufträge haben kein Zeitlimit. Lieferwaren werden erst bei der Übergabe aus dem Rucksack genommen. Aufgaben und Gespräche werden automatisch gespeichert.</small>');
+ for(const el of document.querySelectorAll('[data-topic]'))el.onclick=()=>{capture();const r=talk(s,id,el.dataset.topic);if(r.ok)changed();conversation(id,r.message);};
+ for(const el of document.querySelectorAll('[data-order]'))el.onclick=()=>{capture();const key=el.dataset.order,r=orderStatus(s,key).phase==='available'?acceptOrder(s,key,id):finishOrder(s,key,id,exchangeInventory);if(r.ok)changed();conversation(id,r.message);};
+ }
+ return{conversation};
+}

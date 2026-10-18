@@ -1,0 +1,15 @@
+# Natur, Tiere und Alpradio – 17. Oktober 2026
+
+Umsetzung: elf unterschiedliche Obstbäume (Apfel, Zwetschge, Kirsche), zehn zusätzliche Herbstbaumkronen, dichter verzweigte Nadelbäume, Baumgrenze am Fels, gerundete und unregelmässiger modellierte Bergkonturen. Bach und Bachlager bergwärts verschoben, Bachbett gegen spätere Landschaftsüberblendung geschützt. Hofteich mit zusätzlichem Steinbett; Lagerplatz mit A-Zelt und Grill.
+
+Spielabläufe: Leihsichel → sechs Mähzüge → acht Heu am Feldrand; Nachwachsen nach einer Spielnacht. Dorfladen verkauft Heu/Körner/Marshmallows. Bestehende Korn-/Hühnerkette bleibt erhalten. Schnitzen verbraucht ein Holz und liefert einen Werkzeugstiel. Rösten verbraucht einen Marshmallow und liefert essbaren gerösteten Marshmallow. Zeltübernachtung nutzt den regulären Tageswechsel samt Tierstatus. Keine Offline-Zeit oder echten Schlafstunden. Zutaten/Geld werden atomar verändert; keine doppelten Ballen oder Belohnungen.
+
+Tiere: organische Fellzeichnung der Kühe, neue Halskurve bei Jonny, zwei dekorative Schafe im Tierbereich und Border Collie als freier Begleiter auf der Alp. Schafe haben noch keine eigene Versorgungs-/Wollproduktion. Der Hund nutzt Wegsuche um Wasser, Zäune und Gebäude. Schmale Weidezäune werden zwischen Rasterpunkten geprüft; räumlicher Index begrenzt den zusätzlichen Suchaufwand.
+
+Ansicht: Bänkli und oberer Aussichtspunkt öffnen eine am Ort verankerte 3D-Panoramaansicht. Der Feldstecher verändert den Bildwinkel von 54 auf 18 Grad; Wischen dreht und neigt den Blick, Schwenktasten sind zusätzlich vorhanden. Das vordere Bänkli startet mit Talblick. Keine fotografische Panoramatapete und keine geografisch vermessene Schweizer Umgebung. Reiten, Klettern und Ski wechseln automatisch auf Nah-/Ego-Kameras; eigene Figur beziehungsweise Skihelm verdecken diese Kameras nicht. Tisch-/Arbeitsansichten der bestehenden 2D-Spiele bleiben erhalten.
+
+Radio: zwölf Titel, Summer Walk bleibt Standard. Letzte Wahl wird gespeichert; vorheriger/nächster Titel und Pause bleiben erhalten. Doppeltes Acoustic Folk nicht doppelt hinzugefügt; Schrittaufnahme als Effekt. Zusätzliche Titel als kompakte Mono-Opus-Dateien. Safari benötigt dafür moderne Ogg-Unterstützung (18.4+); scheitert ein Titel, fällt das Radio auf den MP3-Haupttitel zurück. Klangwiedergabe hier nicht abgehört. Ungenutzte alte Holz-Farbtextur im Quellarchiv; weiterhin benutzte Normal-/Rauheitstexturen erhalten. JPEG-Abmessungen der drei Landschaftsmaterialien erhalten, Auslieferung komprimiert.
+
+Prüfverfahren: Regel- und Geometrietests, tatsächliche Anwendungshandler in simulierten iPhone-Hoch-/Querformaten, Weg-/Kollisionsprüfungen bei 30/60 simulierten Bildern pro Sekunde, Speichern/Import älterer Stände und vollständige bestehende Anwendungsregression. Aktuelle Ergebnisprotokolle werden vor Veröffentlichung geprüft.
+
+Grenzen: Keine verfügbare Browser-/GPU-Sichtprüfung. Die gerenderte Referenzähnlichkeit, CSS-Anordnung, reale iPhone-/iPad-Safari-Bedienung, Audioausgabe und Geräteleistung bleiben offen. Technische Checks ersetzen diese Abnahme nicht.

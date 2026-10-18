@@ -1,0 +1,15 @@
+{
+  "method": "built-in image_gen",
+  "assets": [
+    {
+      "name": "swiss-ridge-20261018",
+      "prompt": "Photorealistic Swiss limestone ridge panorama above an alpine farm: broad Pilatus-like layered shoulders, glacial cirques, Bernese snowy peaks, warm clear autumn light, geological bedding, no identical cone mountains, no trees above treeline, no houses/people/text.",
+      "integration": "Design reference and discovery image. Full 3D silhouette remodelling remains open."
+    },
+    {
+      "name": "swiss-limestone-20261018",
+      "prompt": "Tileable Swiss weathered pale grey limestone strata, fine fractures, warm mineral veins, sparse yellow grey lichen, subtle moss. Orthographic even albedo light, no perspective, sky, objects, shadows or text.",
+      "integration": "Triplanar limestone material on existing 3D horizon, scree and rocks."
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "method": "built-in image generation",
+  "purpose": "model references and runtime texture assets",
+  "assets": [
+    {
+      "file": "lantern-reference-20261018.png",
+      "prompt": "Traditional Swiss Alpine wrought iron lantern, aged dark bronze, warm amber glass, hooked wall mount and matching wooden post, neutral background, detailed materials, no text; reference for 3D lamps."
+    },
+    {
+      "file": "swiss-paving-20261018.png",
+      "prompt": "Seamless top-down PBR albedo of pale warm grey granite and sandstone Swiss village cobbles; sand joints, tiny moss, bright evenly lit overhead, no baked shadows, no objects or text."
+    },
+    {
+      "file": "village-reference-20261018.png",
+      "prompt": "Seven distinct Bernese Swiss chalet facades, honey timber, white limewash, carved balconies, shutters, flower boxes, slate roofs; bakery, doctor, store and four homes; cozy autumn realistic game art, no labels."
+    },
+    {
+      "file": "market-goods-20261018.png",
+      "prompt": "Four equal atlas quadrants: autumn produce; friendly Halloween pumpkins and lanterns without skulls; Christmas evergreen wreaths ribbons and wooden stars; vegan groceries oats vegetables legumes and plant milk. Detailed natural warm realistic game photography, no text."
+    },
+    {
+      "file": "village-people-reference-20261018.png",
+      "prompt": "Four full body Swiss villagers, front and three quarter: older woman in teal cardigan/brown skirt, baker in apron/checked shirt, female doctor in white coat/navy clothes, young ochre jacket hiker with backpack. Natural adult proportions, distinct expressive faces, relaxed hands, pale neutral backdrop, no text."
+    }
+  ]
+}

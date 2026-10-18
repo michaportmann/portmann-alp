@@ -1,0 +1,10 @@
+{
+  "asset": "dist/assets/portmann/fir-bough-v2.webp",
+  "generator": "built-in image_gen",
+  "source": "docs/materials/fir-bough-v2-source.png",
+  "generated": "2026-10-17",
+  "use": "Alpha-tested cutout on curved instanced 3D fir boughs; photographic green needle detail, no flat whole-tree billboard.",
+  "prompt": "Use case: photorealistic-natural. Asset type: real-time 3D Swiss alpine game conifer bough cutout texture, not a scene. One natural broad silver-fir branch spray, directly above; slender brown twig left to right, organically curved secondary twigs with dense layered fans of short individual Abies alba needles. Deep forest green and muted sage highlights. Wide horizontal composition, transparent holes and small transparent margin. Photographic botanical scan fidelity, diffuse illumination, no baked shadow, ground, pot, whole tree, text, outline or collage. Genuine transparent background; varied lengths and natural irregular branchlets, not a comb or geometric fern.",
+  "delivery": "512×341 WebP with alpha; original retained unchanged. Alpha test 0.54 removes translucent background haze.",
+  "verification": "Generated source viewed; geometry and texture wiring tested. In-game GPU appearance not yet reviewed."
+}

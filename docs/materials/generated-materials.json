@@ -1,0 +1,30 @@
+{
+  "method": "built-in imagegen",
+  "use": "PBR diffuse colour assets for actual 3D meshes; not gameplay screenshots",
+  "assets": [
+    {
+      "path": "dist/assets/portmann/limestone-albedo.jpg",
+      "size": [
+        2048,
+        2048
+      ],
+      "prompt": "Use case: photorealistic-natural. Asset type: seamless square diffuse albedo material texture for a fully three-dimensional Swiss alpine game, applied to real mountain meshes. Primary request: a close, orthographic, flat evenly lit view of natural Swiss limestone rock, Pilatus-style cool grey layered limestone, fine mineral grains, subtle horizontal oblique sedimentary strata, irregular hairline fissures and weathered surfaces. Full frame only rock material. Soft diffuse shadowless neutral lighting suitable as PBR base color, no baked directional shadows. Restrained grey-blue and pale warm-grey mineral colour. No moss, grass, snow, objects, sky, mountainscape, lettering, labels, borders or panels. No bricks, no regular grid, no faceted low poly style. Seamlessly tileable on all four edges, realistic high detail, square 2048x2048."
+    },
+    {
+      "path": "dist/assets/portmann/honey-timber-albedo.jpg",
+      "size": [
+        2048,
+        2048
+      ],
+      "prompt": "Use case: photorealistic-natural. Asset type: single square seamless PBR diffuse albedo texture for a 3D Bernese Swiss timber chalet. Primary request: close straight-on orthographic view of warm honey-brown aged spruce timber, natural fine horizontal flowing grain, subtle knots, fine weathering, slight amber tone and authentic gentle colour variation across the whole surface. Full image only wood surface; continuous material rather than a wall scene. Even diffuse neutral lighting, no baked directional shadows, no gloss. No border, no text, no objects, no nails, no plank gaps, no grid, no masonry, no decorations. Seamlessly tileable on all four edges. Square 2048x2048."
+    },
+    {
+      "path": "dist/assets/portmann/meadow-albedo.jpg",
+      "size": [
+        1024,
+        1024
+      ],
+      "prompt": "Photorealistic seamless tileable PBR diffuse ground texture for a 3D Swiss alpine meadow. Orthographic straight overhead view, full frame lush living green grass, interwoven varied thin blades and tiny meadow leaves, subtle natural patchiness, occasional dark earth visible underneath, predominantly fresh medium grass green with restrained yellow-green highlights, fine scale. Even neutral diffuse overcast light, no directional shadows, no flowers, no rocks, no objects, no perspective, no sky, no text or borders, not a landscape picture. All edges seamlessly tileable. Square 1024x1024."
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "tool": "built-in image_gen",
+  "assets": {
+    "alpine-shrub-20261018": "exec-db5fc7f1-1124-472f-b385-d7ab49320066.png",
+    "home-materials-20261018": "exec-7fc099d0-f54b-4dfb-82ac-f19cf3c08466.png",
+    "home-reference-20261018": "exec-7ba21afa-6bf9-42ee-8b58-3e4875e1b48b.png",
+    "camp-redesign-20261018": "exec-99c2b8f5-625e-4728-a4a1-e0aae84d9488.png"
+  },
+  "integration": {
+    "shrub": "transparent crossed planes on 3D alpine understory",
+    "home": "four extracted material tiles used in all walkable interior storeys, furnished to the generated room reference",
+    "camp": "new first-person campfire background; 3D shore camp decorated to match"
+  },
+  "prompts": [
+    "Realistic Swiss autumn bilberry shrub with ferns, true alpha, no soil slab.",
+    "Four quadrant orthographic scans: honey larch boards, lime plaster, pale limestone masonry, red cream gingham.",
+    "Four rooms: Bernese Stube, pine bedroom, copper cheesemaking workshop, arched cheese cellar.",
+    "Calm moonlit Swiss alpine pond campsite with ochre tent, central fire, log bench and firewood."
+  ],
+  "originals_preserved": true
+}

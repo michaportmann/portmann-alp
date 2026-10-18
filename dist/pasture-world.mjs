@@ -1,0 +1,11 @@
+import * as T from './vendor/three.module.js';
+import {fences} from './logic.mjs';
+export function createPastureWorld({scene,height,interactive,animated,navigationTargets,nature,label}){
+const wood=new T.MeshStandardMaterial({color:'#927452',roughness:.9}),pale=new T.MeshStandardMaterial({color:'#ded3b5',roughness:.9});const upgrades=new T.Group();scene.add(upgrades);upgrades.userData.kind='riding-park-upgrade';function rod(a,b,r,m=wood,p=scene){const u=new T.Vector3(...a),v=new T.Vector3(...b),d=v.clone().sub(u),o=new T.Mesh(new T.CylinderGeometry(r,r,d.length(),10),m);o.position.copy(u.add(v).multiplyScalar(.5));o.quaternion.setFromUnitVectors(new T.Vector3(0,1,0),d.normalize());o.castShadow=true;p.add(o);return o;}
+for(const x of fences){const y=height(x,15);for(const s of[-1,1])rod([x,y,15+s*2.1],[x,y+1.5,15+s*2.1],.08);for(const h of[.47,.87])rod([x,y+h,12.9],[x,y+h,17.1],.055,pale);const mark=new T.Mesh(new T.PlaneGeometry(.15,3.5),new T.MeshBasicMaterial({color:'#dfcd99',side:T.DoubleSide}));mark.rotation.x=-Math.PI/2;mark.position.set(x-2.9,height(x-2.9,15)+.055,15);scene.add(mark);}
+for(let x=-23;x<=23;x+=3){for(const z of[10,20]){rod([x,height(x,z),z],[x,height(x,z)+1.1,z],.055,wood,upgrades);if(x<23)for(const h of[.45,.9])rod([x,height(x,z)+h,z],[x+3,height(x+3,z)+h,z],.04,wood,upgrades);}}
+// A quiet preparation corner appears after the upgrade, outside the jumping line.
+for(const x of[-10,-6])rod([x,height(x,4),4],[x,height(x,4)+2.5,4],.07,wood,upgrades);rod([-10,height(-10,4)+2.5,4],[-6,height(-6,4)+2.5,4],.08,wood,upgrades);for(const z of[3.5,4,4.5])rod([-10,height(-8,4)+.6,z],[-6,height(-8,4)+.6,z],.1,wood,upgrades);
+const horse=nature.makeHorse({black:wood,beam:wood,white:pale});horse.g.position.set(6,height(6,3),3);horse.g.rotation.y=-.5;horse.g.userData.navigationId='horse';scene.add(horse.g);navigationTargets.push(horse.g);animated.push(t=>{horse.head.rotation.x=.25+Math.sin(t*.7)*.04;horse.tail.rotation.z=Math.sin(t*1.2)*.12;});interactive.push({id:'horse',name:'Jonny begrüssen',x:6,z:3,range:2.7},{id:'course',name:'Jonnys Grundparcours starten',x:-19,z:14,range:3});label('Jonny · ab dem ersten Tag frei',6,height(6,3)+3.1,3,4);label('Reitweide · deine ausbaubare Alp',0,height(0,8)+2,8,4);
+return{horse:horse.g,sync(s){upgrades.visible=!!s.estate.built.riding;}};
+}

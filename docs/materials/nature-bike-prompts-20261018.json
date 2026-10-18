@@ -1,0 +1,17 @@
+{
+  "date": "2026-10-18",
+  "generator": "Built-in image generation",
+  "sources": [
+    {
+      "file": "alpine-bush-atlas-20261018.png",
+      "runtime": "dist/assets/portmann/alpine-bush-atlas.webp",
+      "prompt": "Photorealistic Swiss alpine botanical 2x2 alpha atlas: isolated hazel, autumn wild rose with hips, bilberry, cream-flowering dwarf shrub; complete branch silhouettes, transparent margins, no text. Applied on lit intersecting shrub planes and on renewable coppice foliage."
+    },
+    {
+      "file": "bikepark-reference-20261018.png",
+      "runtime": "dist/assets/portmann/bikepark-reference.webp",
+      "prompt": "Realistic autumn Swiss mountainbike park: forest-green full-suspension bike, disc brakes, gold forks, curved braced timber takeoff, broad dirt landing, successive jumps, larches/firs/meadow, broad limestone peaks and valley. No rider or text. Used as selectable park preview and design reference for actual 3D bike/ramp/vegetation implementation."
+    }
+  ],
+  "note": "Full source PNGs and retained original media live in this source tree. Preview is not a game screenshot. Runtime WebP images compressed for mobile delivery."
+}

@@ -1,0 +1,47 @@
+[
+  {
+    "id": "orchard-leaves",
+    "path": "/workspace/scratch/6150ca3930e0/generated_images/exec-4001a9ac-9199-47a2-a322-2404b826a14a.png",
+    "prompt": "Use case: photorealistic-natural. Intended for a realistic cozy Swiss alpine 3D game. A botanical texture atlas, four equal quadrants separated by generous fully transparent gutters. One single leaf per quadrant: upper left apple leaf broad oval with serrated edge, upper right plum leaf elongated oval, lower left cherry leaf finely serrated and pointed, lower right pear leaf slightly glossy. Each leaf seen flat from above, stem at bottom, tip at top, occupies 80% of its cell. Mostly natural fresh green with subtle early-autumn variation, fine veins and authentic surface texture. No branches, fruits or whole trees. Genuine transparent background."
+  },
+  {
+    "id": "autumn-leaves",
+    "path": "/workspace/scratch/6150ca3930e0/generated_images/exec-6751aa20-6cec-486c-a4f6-df58b517971e.png",
+    "prompt": "Use case: photorealistic-natural. Intended for a realistic cozy Swiss alpine 3D game. A botanical texture atlas, four equal quadrants with transparent gutters. One single autumn leaf per quadrant, flat directly above, stem bottom tip top: upper left golden sycamore maple, upper right copper beech, lower left golden birch, lower right ochre hornbeam. Rich warm Swiss alpine autumn colors, natural veins, subtle wear. Each complete leaf occupies 80% of cell. No branch, no background, no labels, genuine transparent background."
+  },
+  {
+    "id": "animal-materials",
+    "path": "/workspace/scratch/6150ca3930e0/generated_images/exec-52639b66-ec04-476f-8070-73ded1b82fce.png",
+    "prompt": "Use case: photorealistic-natural. Intended for a realistic cozy Swiss alpine 3D game. A production 2x2 seamless surface texture atlas for 3D animal models. Four equal square tiles, no gutter, no labels. Top left: Swiss brown-and-cream cow coat, irregular organic broad patches with fine short hair visible. Top right: warm ivory natural sheep fleece, dense small irregular wool curls. Bottom left: chestnut horse coat, short fine copper-brown hair with subtle tonal variation. Bottom right: neutral off-white fine dog fur texture, natural short hair, no markings. Flat scanned material view, even diffuse light, no body parts or whole animals, no shadows or scenery. Each quadrant is a tileable material."
+  },
+  {
+    "id": "hay",
+    "path": "/workspace/scratch/6150ca3930e0/generated_images/exec-130615fc-7dd3-429c-8744-6e7cc8cd2b3b.png",
+    "prompt": "Use case: photorealistic-natural. Intended for a realistic cozy Swiss alpine 3D game. A seamless tileable close photographic scan of dry Swiss meadow hay, golden straw-colored dried grasses, fine long uneven strands crisscrossing organically, occasional pale green thin blades and tiny seedheads. Dense surface with small natural gaps, realistic dry fibrous texture, subtle roughness, warm honey straw colors, soft diffuse illumination with no directional cast shadows. Fills entire square edge to edge. No bale outline, no landscape, no lettering."
+  },
+  {
+    "id": "limestone",
+    "path": "/workspace/scratch/6150ca3930e0/generated_images/exec-25304849-5ef7-413c-9374-fc80d9b6a924.png",
+    "prompt": "Use case: photorealistic-natural. Intended for a realistic cozy Swiss alpine 3D game. A seamless square limestone rock albedo texture for real 3D Swiss Pilatus mountain cliffs and shore boulders. Weathered pale warm grey Jurassic limestone, broad irregular stone planes, faint broken diagonal bedding, small branching dark fissures, subtle mineral grain and slightly ochre weathering. Natural varied fracture scale; no vertical repetitive stripes, no brick pattern, no dramatic black cracks, no deep baked directional shadows. Flat photographic material scan, even diffuse daylight, fills edge to edge, no landscape or sky."
+  },
+  {
+    "id": "alpine-flowers",
+    "path": "/workspace/scratch/6150ca3930e0/generated_images/exec-a7e7566e-df57-4c23-8c68-7ca07f98ee67.png",
+    "prompt": "Use case: photorealistic-natural. Intended for a realistic cozy Swiss alpine 3D game. Four equal square botanical flower-head cutout tiles on genuine transparent background, separated by transparent gutters. Each contains one bloom viewed directly from above, no stem: upper left white oxeye daisy with golden disk, upper right golden buttercup with five naturally cupped petals, lower left rich blue alpine gentian flower with five lobes, lower right pink-red clover flowerhead made of tiny florets. Photorealistic macro botanical scan, fine veins and organic imperfect petals, soft diffuse light, each flower occupies 80% of its cell, no labels or background."
+  },
+  {
+    "id": "wheat-ear",
+    "path": "/workspace/scratch/6150ca3930e0/generated_images/exec-46bfc2db-654f-46fa-99ac-27d757fb8eeb.png",
+    "prompt": "Use case: photorealistic-natural. Intended for a realistic cozy Swiss alpine 3D game. One single ripe golden wheat ear with a short length of slender stalk and a narrow curved leaf, isolated on genuine transparent background. Entire upright ear in portrait composition, dense natural wheat kernels and delicate awns, warm golden straw colors with fine authentic material detail. Botanical photographic scan, soft diffuse daylight, no directional shadow, no scenery, no soil, no text. Ear upper 70 percent, slender stalk reaches bottom margin."
+  },
+  {
+    "id": "cozy-materials",
+    "path": "/workspace/scratch/6150ca3930e0/generated_images/exec-ad161d02-14e0-46d7-8c6f-f6fb8e5cc9d6.png",
+    "prompt": "Use case: photorealistic-natural. Intended for a realistic cozy Swiss alpine 3D game. A production 2x2 material texture atlas, four equal square seamless tiles edge-to-edge with no labels or gutters. Top left: natural warm khaki cotton canvas tent fabric, fine plain weave, subtle irregular fibers. Top right: warm cream wool blanket, soft fine woven texture. Bottom left: warm weathered Swiss alpine brown larch wood board surface, continuous vertical grain with occasional subtle knots, no seams between boards. Bottom right: muted rust terracotta woven wool blanket with very subtle cream checks. Even soft diffuse material scanning light, no object silhouettes, no dramatic baked shadow, photorealistic tactile surfaces."
+  },
+  {
+    "id": "alp-landscape-reference",
+    "path": "/workspace/scratch/6150ca3930e0/generated_images/exec-ecd01f37-7e47-46ee-bb4d-383bbaeafe02.png",
+    "prompt": "Use case: photorealistic-natural. Intended for a realistic cozy Swiss alpine 3D game. A photorealistic warm early autumn Swiss alpine homestead on a true sloping mountain terrace, quietly arranged and spacious. A beautiful honey-brown Bernese timber chalet and adjacent matching working barn, a small open post-and-roof hay store with real hay bales, enclosed cows and goats, an orchard with apple plum cherry trees. Behind the chalet a single earthy footpath climbs through a natural mixture of silver firs, golden larches and copper/gold broadleaf trees, leading toward a broad asymmetrical Pilatus-like limestone massif, layered distant Bernese snowy peaks. At one side a modest irregular clear pond with partly submerged rocks; one small khaki canvas A-frame tent on a dry shore clearing, low log seat with a wool blanket and a small stone hearth with kettle. Ripe grain and lush alpine flowers edge the meadow, not scattered across paths. Clear actual slope drops toward a village in the foreground. Soft warm afternoon sunlight, calm coherent lifelike atmosphere, human-eye height moderately wide shot, realistic natural proportions, no people, no kiosks, no fantasy cones, no game UI, no text. This is a coherent environmental design reference for the existing 3D Portmann Alp game."
+  }
+]

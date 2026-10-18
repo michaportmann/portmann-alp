@@ -1,0 +1,15 @@
+{
+  "tool": "built-in image_gen",
+  "use_case": "photorealistic-natural",
+  "source": "hay-meadow-20261018.png",
+  "runtime": "dist/assets/portmann/hay-meadow-20261018.webp",
+  "prompt": "Isolated dense wide clump of harvest-ready Swiss alpine meadow hay grass, varied green fine fescue and timothy blades, golden seed heads and a few clover leaves, front view, natural asymmetric silhouette, warm autumn daylight, true transparent background, no sky or soil block. Alpha-cutout texture on crossed planes in a four-times larger Swiss hay meadow.",
+  "field": {
+    "previous_area": 30,
+    "current_area": 120,
+    "width": 12,
+    "depth": 10,
+    "daily_hay": 32
+  },
+  "source_preserved": true
+}
